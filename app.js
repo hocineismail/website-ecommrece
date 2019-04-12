@@ -7,11 +7,11 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash"); 
 const passport = require("passport");
-
+var routesAdmin = require('./routes/routesAdmin/routesAdmin')
 mongoose.connect("mongodb://localhost:27017/projet-Univ");
 
 // routes
-
+app.use(routesAdmin)
 
 var setUpPassport = require('./routes/setuppassport')
 
