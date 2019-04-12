@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- Add icon library -->
+  <title> موقع علامة</title>
+  <meta charset="utf-8">
+  
+  <link rel="icon" href="logo.png" type="image/gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  margin-top: 3%;
+ font-size: 15px;
+  font-family: 'Cairo', sans-serif;
+
+ 
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image:  url("bg.jpg");
+
+  
+position: relative;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+ 
+* {box-sizing: border-box;}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: dodgerblue;
+  color: white;
+  padding: 15px 20px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.btn1 {
+  background-color: rgb(72, 199, 110);
+  color: white;
+  padding: 15px 20px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+
+}
+
+.btn:hover {
+  opacity: 1;
+  background-color: rgb(82, 167, 252);
+}
+.btn1:hover {
+  opacity: 1;
+  background-color: rgb(164, 248, 185);
+}
+/**
+ * Demo Styles
+ */
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {position: relative;
+
+  padding-bottom: 6rem;
+  min-height: 100%;
+
+}
+
+.demo {
+  margin: 0 auto;
+  padding-top: 64px;
+  max-width: 640px;
+  width: 94%;
+}
+
+.demo h1 {
+  margin-top: 0;
+}
+
+/**
+ * Footer Styles
+ */
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+</style>
+</head>
+<body dir="rtl">
+  <div class="container" style="margin-top: 7% ">
+  <div class="row">
+   
+
+    <div class="col-md-5" style="height: 150%">
+        <div class="mobile" style="background-color: #fff;padding-bottom: 20% ">
+            <div class="container card" style="padding-top: 2%;width: 80%; box-shadow: 1px 1px 3px  rgb(155, 155, 155);">
+          
+            <br>
+             <br>
+            <% errors.forEach(function(error) { %>
+            <div class="alert alert-danger" role="alert" style="text-align:right">
+            <%= error %>
+            </div>
+            <% }) %>
+            <% infos.forEach(function(info) { %>
+            <div class="alert alert-info" role="alert" style="text-align:right">
+            <%= info %>
+            </div>
+            <% }) %>
+              <br>
+             <br>
+             <h1 style="text-align: center;">تسجيل الدخول</h1>
+             <br>
+             <br>
+          <form action="/login" method="post">
+
+            <div class="input-container"  >
+                <i class="fa fa-envelope icon"></i>
+           <input name="username" type="text" class="input-field"
+            placeholder="البريد " required autofocus  dir="ltr" style="text-align:right"> 
+          </div>
+              
+          <div class="input-container" >
+              <i class="fa fa-key icon"></i>
+           <input name="password" type="password" class="input-field"
+            placeholder="كلمة المرور" required> 
+            </div>
+           <input type="submit" value="تسجيل الدخول" class="btn btn-default">
+          </form>
+          
+          <a href="/forgot" >فقدت كلمة المرور
+          </a>
+          <h1 style="text-align: center">او</h1><br>
+          <div class="input-container" > 
+          <a href="/signup" class="btn1 btn-default" style="text-align: center"> حساب جديد
+         </a></div>
+          </div>
+          </div>
+            
+           </div>
+
+
+           <div class="col-md-7" style="margin-bottom: 5%; height: 100%">
+       <% pub.forEach(function(pub) { %>
+       
+              <div class="card text-white bg-success ">
+                  <div class="card-header" style="text-align:right"> <h1 >اعلان</h1></div>
+                  <div class="card-body">
+                  
+                    <p style="text-align:right ; font-size: 18px"><%= pub.Pub %></p>
+                  </div>
+                </div>
+                  
+            
+          </div>
+          <% }) %>
+           
+ </div> 
+ 
+
+
+</div>
+
+</body>
+</html>
