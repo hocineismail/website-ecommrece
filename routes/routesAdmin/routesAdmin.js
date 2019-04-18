@@ -6,6 +6,8 @@ const multer = require('multer');
 var User = require("../../models/user");
 const bodyParser = require("body-parser");
 const path = require("path");
+const Categorie = require('../../models/categorie')
+const Produit = require('../../models/produit')
 routesAdmin.get('/admin', (req,res )=> {
 res.render("Admin/admin")
 })
@@ -13,8 +15,13 @@ res.render("Admin/admin")
 routesAdmin.get('/', (req,res )=> {
     res.render("index")
     })
+
+
 routesAdmin.get('/ajouterProduit', (req,res )=> {
-    res.render("Admin/ajouterProduit")
+    Categorie.find({},(err,categories)=> {
+        res.render("Admin/ajouterProduit",{categories: categories})
+    })
+   
     })
     
 //this code for uplauding the file of produit
@@ -76,7 +83,30 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
       
             } else {
               console.log('File Uploaded!')
-               console.log(req.files.image1[0].filename)
+              if (req.body.NewCategorie != "") {
+                  var categorie = req.body.NewCategorie;
+                var nweCategorie = new Categorie({
+                    Categorie: req.body.NewCategorie
+                })
+                nweCategorie.save()
+                var NewProduit = new Produit({
+                    Produit: req.body.produit,
+                    Prix: req.body.prix,
+                    categorie: nweCategorie._id,
+                    Quantite: req.body.quantite,
+                    Description: req.body.description
+                   });NewProduit.save()
+              } else { 
+               var NewProduit = new Produit({
+                Produit: req.body.produit,
+                Prix: req.body.prix,
+                categorie: req.body.categorie,
+                Quantite: req.body.quantite,
+                Description: req.body.description
+               });NewProduit.save()
+              }
+             
+              
               res.render('Admin/admin');
       
             }
