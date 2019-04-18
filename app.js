@@ -8,15 +8,11 @@ const session = require("express-session");
 const flash = require("connect-flash"); 
 const passport = require("passport");
 var routesAdmin = require('./routes/routesAdmin/routesAdmin')
+
+var auth = require('./routes/auth/auth')
 mongoose.connect("mongodb://localhost:27017/projet-Univ");
 
 // routes
-app.use(routesAdmin)
-
-var setUpPassport = require('./routes/setuppassport')
-
-
-setUpPassport()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -31,6 +27,15 @@ app.use(
 
   })
 )
+app.use(flash());
+app.use(routesAdmin)
+app.use(auth)
+
+var setUpPassport = require('./routes/setuppassport')
+
+
+setUpPassport()
+
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
