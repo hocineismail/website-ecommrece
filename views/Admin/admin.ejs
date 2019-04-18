@@ -39,85 +39,44 @@
 <body>
        
 
-      <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;padding: 10px  ">
+      <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%;padding: 10px  ">
             <h3 class="w3-bar-item">Option avancer</h3>
-            
-            <div class="form-group" >
-                    <label for="exampleFormControlSelect1">Recherche par categorie</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>auto</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                    </select>
-                  
-                  <label for="exampleFormControlSelect1">Recherche par taille</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>auto</option>
-                    <option>produit</option>
-                    <option>produit</option>
-                    <option>produit</option>
-                    
-                  </select>
-                </div>
-                  <label for="exampleFormControlSelect1">Recherche par une Somme</label>
-                  <div class="row">
-                      
-                        <div class="col">
-                          <input type="number" class="form-control" placeholder="100DA">
-                        </div>
-                        <div class="col">
-                          <input type="number" class="form-control" placeholder="1000000DA">
-                        </div>
-                      </div>
-                      <label for="exampleFormControlSelect1">Recherche par taille</label>
-                 
-                      <button type="submit" class="btn btn-primary">recherche</button>
-                
-                      
-                      
+            <a class="nav-link" href="/ajouterProduit">Ajouter un produit <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Liste des admins </a>
+            <a class="nav-link" href="#">Liste des clients </a>
+            <a class="nav-link" href="#">Statistique </a>
+          
           </div>
           
           
           <!-- Page Content -->
           <div style="margin-left:25%">
           
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <div class="container"> 
-                            <a class="navbar-brand" href="#">Shopping</a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                              <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarText">
-                              <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                  <a class="nav-link" href="#">Nos produit <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">Contact nous</a>
-                                </li>
-                                <li class="nav-item">
-                                  <a class="nav-link" href="#">Pricing</a>
-                                </li>
-                              </ul>
-                              <span class="navbar-text">
-                                    <a href="#" class="notification" style="padding-right: 20px">
-                                            <img src="card.png" style="  width:  30px;border-radius: 100%;" />
-                                            <span class="badge"style="margin-right: 20px">3</span>
-                                          </a>
-                                           
-                                 
-                                    <button type="button" class="btn btn-success" onclick="window.location.href='/register'">Register</button>
-                            <button type="button" class="btn btn-outline-success"  onclick="window.location.href='/login'">Se Connecter</button>
-                              </span>
-                            </div>
-                    
-                          </nav>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container"> 
+                  <a class="navbar-brand" href="#">Shopping</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="#">Ajouter un produit <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Statistique </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                      </li>
+                    </ul>
+                    <span class="navbar-text">
+
+                  <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/login'">Se Deconnecter</button>
+                    </span>
+                  </div>
+          
+                </nav>
           
     
           
