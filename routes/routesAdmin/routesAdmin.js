@@ -6,7 +6,7 @@ var async =  require("async");
 var User = require("../../models/user");
 
 
-routesAdmin.get('/', (req,res )=> {
+routesAdmin.get('/admin', (req,res )=> {
 res.render("Admin/admin")
 })
 

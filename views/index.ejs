@@ -1,1 +1,150 @@
-<h1> hello wordk</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+            <link href="css/bootstrap.css" rel="stylesheet" />           
+             <link href="css/bootstrap-theme.css" rel="stylesheet" />
+            <script src="js/bootstrap.min.js"></script>
+            <link href="css/css.css" rel="stylesheet" />
+            <link href="css/icon.css" rel="stylesheet"  />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+            <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+    <style>
+    
+.notification {
+
+  color: white;
+  text-decoration: none;
+
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+ 
+  background-color: red;
+  color: white;
+}
+</style>
+<body>
+       
+
+      <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;padding: 10px  ">
+            <h3 class="w3-bar-item">Option avancer</h3>
+            
+            <div class="form-group" >
+                    <label for="exampleFormControlSelect1">Recherche par categorie</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>auto</option>
+                      <option>produit</option>
+                      <option>produit</option>
+                      <option>produit</option>
+                      <option>produit</option>
+                      <option>produit</option>
+                      <option>produit</option>
+                      <option>produit</option>
+                      <option>produit</option>
+                    </select>
+                  
+                  <label for="exampleFormControlSelect1">Recherche par taille</label>
+                  <select class="form-control" id="exampleFormControlSelect1">
+                    <option>auto</option>
+                    <option>produit</option>
+                    <option>produit</option>
+                    <option>produit</option>
+                    
+                  </select>
+                </div>
+                  <label for="exampleFormControlSelect1">Recherche par une Somme</label>
+                  <div class="row">
+                      
+                        <div class="col">
+                          <input type="number" class="form-control" placeholder="100DA">
+                        </div>
+                        <div class="col">
+                          <input type="number" class="form-control" placeholder="1000000DA">
+                        </div>
+                      </div>
+                      <label for="exampleFormControlSelect1">Recherche par taille</label>
+                 
+                      <button type="submit" class="btn btn-primary">recherche</button>
+                
+                      
+                      
+          </div>
+          
+          
+          <!-- Page Content -->
+          <div style="margin-left:25%">
+          
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                        <div class="container"> 
+                            <a class="navbar-brand" href="#">Shopping</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarText">
+                              <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                  <a class="nav-link" href="#">Nos produit <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#">Contact nous</a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                              </ul>
+                              <span class="navbar-text">
+                                    <a href="#" class="notification" style="padding-right: 20px">
+                                            <img src="card.png" style="  width:  30px;border-radius: 100%;" />
+                                            <span class="badge"style="margin-right: 20px">3</span>
+                                          </a>
+                                           
+                                 
+                                    <button type="button" class="btn btn-success" onclick="window.location.href='/register'">Register</button>
+                            <button type="button" class="btn btn-outline-success"  onclick="window.location.href='/login'">Se Connecter</button>
+                              </span>
+                            </div>
+                    
+                          </nav>
+          
+    
+          
+          <div class="w3-container">
+                <div class="container">
+                        <div class="row">
+                            <% for (let i = 0; i < 10 ; i++) { %>
+                            <div class="col-md-4" style="padding-top: 100px" > 
+                                <div class="card" style="width: 15rem;">
+                                        <h5 class="card-title" style="text-align: center">Card title</h5>
+                                        <img class="card-img-top" src="https://assets.adidas.com/images/w_840,h_840,f_auto,q_auto:sensitive,fl_lossy/f4412b3f0dab40baa631a81000a777ce_9366/Veste_adidas_Z_N_E__2_gris_CW0763_01_laydown.jpg" alt="Card image cap">
+                                        <div class="card-body">
+                                          <h1 >60000 DA</h1>
+                                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                          <a href="#" class="btn btn-primary"><span style="  font-size: 25px">+</span> Ajouter au panier</a>
+                                        </div>
+                                      </div>
+                                    </div>
+            
+                                
+                                <% }%>    
+            
+                        </div>
+                    </div>
+          </div>
+          
+          </div>
+     
+</body>
+</html>

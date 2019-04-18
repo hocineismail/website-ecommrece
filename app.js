@@ -49,11 +49,15 @@ app.set('view engine', 'ejs')
 app.post(
   '/login',
   passport.authenticate('login', {
-    successRedirect: '/',
+    successRedirect: '/routes',
     failureRedirect: '/login',
     failureFlash: true
   })
 )
+app.get("/routes", (req,res) => {
+consoile.log("seachring routes")
+})
+
 
 app.get("/404", (req,res) => {
   res.render("404")
