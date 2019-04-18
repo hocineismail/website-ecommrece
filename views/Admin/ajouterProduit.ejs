@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link href="css/bootstrap.css" rel="stylesheet" />           
+             <link href="css/bootstrap-theme.css" rel="stylesheet" />
+            <script src="js/bootstrap.min.js"></script>
+            <link href="css/css.css" rel="stylesheet" />
+            <link href="css/icon.css" rel="stylesheet"  />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+            <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+    <style>
+    
+.notification {
+
+  color: white;
+  text-decoration: none;
+
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+ 
+  background-color: red;
+  color: white;
+}
+</style>
+<body>
+       
+
+      <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;padding: 10px  ">
+            <h3 class="w3-bar-item">Option avancer</h3>
+            <a class="nav-link" href="/ajouterProduit">Ajouter un produit <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#">Liste des admins </a>
+            <a class="nav-link" href="#">Liste des clients </a>
+            <a class="nav-link" href="#">Statistique </a>
+          
+          </div>
+          
+          
+          <!-- Page Content -->
+          <div style="margin-left:25%">
+          
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container"> 
+                  <a class="navbar-brand" href="#">Shopping</a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                      <li class="nav-item active">
+                        <a class="nav-link" href="#">Ajouter un produit <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Statistique </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                      </li>
+                    </ul>
+                    <span class="navbar-text">
+
+                  <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/login'">Se Deconnecter</button>
+                    </span>
+                  </div>
+          
+                </nav>
+          
+    
+          
+          <div class="w3-container">
+                <div class="container">
+                    <h1 style="text-align: center">Ajouter un produit</h1>
+                    </div>
+                    <hr>
+                    <div class="container">
+                    <form  action="AddProduit" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label for="LeNomDeProduit">Le nom de Produit</label>
+                          <input type="text" class="form-control" name="produit" id="LeNomDeProduit"  placeholder="le nom de produit">
+                      
+                        </div> 
+                        <div class="row">
+                            <div class="col">
+                        <div class="form-group">
+                            <label for="Categorie">Categorie: </label>
+                            <select class="form-control" id="Categorie" name="categorie">
+                              <option>1</option>
+                            </select>
+                          </div>
+                          </div>
+                          <div class="col">
+
+                          <div class="form-group">
+                            <label for="categorie"> Ou </label>
+                            <input type="text" class="form-control" name="categorie" id="categorie"  placeholder="ajouter une categorie s il n existe pas sur la liste">
+                      
+                          </div>
+                        </div>
+                    </div>
+                    <label for="categorie"> Ajouter Image pricipal</label>
+                    <br>
+                    <label class="file">
+                        <input type="file" id="file" name="image1" aria-label="File browser example">
+                        <span class="file-custom"></span>
+                      </label>
+                      <hr>
+                     <div class="row"> 
+                         <div class="col-md-4"> 
+                            <label for="categorie"> Ajouter image 1</label>
+                            <br>
+                            <label class="file">
+                                <input type="file" id="file"  name="image2"  aria-label="File browser example">
+                                <span class="file-custom"></span>
+                              </label>
+                         </div>
+                         <div class="col-md-4"> 
+                            <label for="categorie"> Ajouter Image 2</label>
+                            <br>
+                            <label class="file">
+                                <input type="file" id="file"   name="image3"  aria-label="File browser example">
+                                <span class="file-custom"></span>
+                              </label>
+                        </div>
+                        <div class="col-md-4"> 
+                            <label for="categorie"> Ajouter Image 3</label>
+                            <br>
+                            <label class="file">
+                                <input type="file" id="file"  name="image4"  aria-label="File browser example">
+                                <span class="file-custom"></span>
+                              </label>
+                        </div>
+                        
+                     </div>
+                      
+                    
+                      
+
+                        <div class="form-group">
+                            <label for="Prix">Prix: </label>
+                            <input type="number" name="prix" class="form-control" id="Prix"  placeholder="prix">
+                        
+                          </div>
+                          <div class="form-group">
+                            <label for="Description">Description</label>
+                            <textarea class="form-control"  name="description" id="Description" rows="3"></textarea>
+                     
+                        
+                          </div>
+                          <div class="form-group">
+                            <label for="Quantite">Quantite</label>
+                            <input type="number" class="form-control" id="Quantite"  placeholder="Quantite">
+                        
+                          </div>
+                        
+                        <button type="submit" class="btn btn-primary">Ajouter le produit</button>
+                      </form>
+                    </div>
+          </div>
+          
+          </div>
+     
+</body>
+</html>
