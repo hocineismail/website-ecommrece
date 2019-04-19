@@ -23,6 +23,7 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
 
     routesAdmin.get('/UserAdmins', (req,res )=> {
         User.find({user: "Admin"},(err,user)=> {
+          console.log(user)
             res.render("Admin/userAdmins",{user: user})
         })
        

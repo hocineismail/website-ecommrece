@@ -12,7 +12,7 @@ const Produit = require("./models/produit");
 const ImageProduir = require("./models/imageProduit")
 const Categorie = require("./models/categorie")
 var auth = require('./routes/auth/auth')
-mongoose.connect("mongodb://localhost:27017/projet-Univc");
+mongoose.connect("mongodb://localhost:27017/projet-Unic");
 
 // routes
 
@@ -37,7 +37,13 @@ var setUpPassport = require('./routes/setuppassport')
 
 
 setUpPassport()
-
+app.get("/routes",(req,res)=>{
+  if (req.user.user === "Client") {
+     res.redirect("/")
+  } else {
+    res.redirect("/admin")
+  }
+})
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())

@@ -86,26 +86,25 @@
 <table class="table table-light">
         <thead>
           <tr>
-            <th scope="col">Paramtre</th>
-            <th scope="col">Produit</th>
-            <th scope="col">Categorie</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Quantite</th>
+            <th scope="col">le nom</th>
+            <th scope="col">le prenom</th>
+            <th scope="col">email</th>
+            <th scope="col">sexe</th>
+            <th scope="col">adress</th>
+            <th scope="col">edite</th>
           </tr>
         </thead>
         <tbody>
             <% user.forEach(function(user) { %>
           <tr>
            
-            <td><a href="/DeleteProduit/<%= user._id %>" class="btn btn-danger">D</a><button class="btn btn-success">M</button></td>
-            <td>>  <%= user.user%> <br></td>
-            <td><%= user %></td>
-            <td><%= user %></td>
-            <% if ( user  ) { %>
-            <td style="color: green"><%= user.Quantite%></td>
-            <%}else { %>
-                <td style="color: red">FINI</td>
-                <% } %>
+           <td> <%= user.Firstname %> <br></td>
+            <td><%= user.Lastname %></td>
+            <td><%= user.email %></td>
+            <td><%= user.Sexe %></td>
+            <td><%= user.Address %></td>
+            <td><a href="/DeleteUser/<%= user._id %>" class="btn btn-danger">D</a><button class="btn btn-success">M</button></td>
+         
           </tr>
          <% }) %>
         </tbody>
