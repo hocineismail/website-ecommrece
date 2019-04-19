@@ -7,12 +7,16 @@ var userSchema = mongoose.Schema({
     Lastname: {type: String, },
     Birthday: {type: Date},
     Sexe: {type: String  },
-    Role: {type: String  },
     Address: {type: String, },
     Phone: {type: Number},
     email: { type: String,  unique: true },
     password: { type: String,  },
     createdAt: { type: Date, default: Date.now },
+    user:  { type: String,  unique: true },
+    role: {
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+      }
 });
 
 var noop = function() {};
