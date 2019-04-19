@@ -14,6 +14,10 @@ var produitSchema = Schema({
  categorie: {
     type: Schema.Types.ObjectId,
     ref: 'Categorie'
+  },
+  image: {
+    type: Schema.Types.ObjectId,
+    ref: 'ImageProduit'
   }
 });
 

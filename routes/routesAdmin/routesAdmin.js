@@ -8,13 +8,10 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const Categorie = require('../../models/categorie')
 const Produit = require('../../models/produit')
+const ImageProduit = require('../../models/imageProduit')
 routesAdmin.get('/admin', (req,res )=> {
 res.render("Admin/admin")
 })
-
-routesAdmin.get('/', (req,res )=> {
-    res.render("index")
-    })
 
 
 routesAdmin.get('/ajouterProduit', (req,res )=> {
@@ -46,7 +43,6 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
   {name: 'image2'},
   {name: 'image3'},
   {name: 'image4'},
-  {name: 'image5'},
   ])
   
   
@@ -89,19 +85,36 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
                     Categorie: req.body.NewCategorie
                 })
                 nweCategorie.save()
+                var newImage = new ImageProduit({
+                   Imageone: req.files.image1[0].filename,
+                   Imagetwo: req.files.image2[0].filename,
+                   Imagethee: req.files.image3[0].filename,
+                   Imagefour: req.files.image4[0].filename,
+                 
+                });newImage.save()
                 var NewProduit = new Produit({
                     Produit: req.body.produit,
                     Prix: req.body.prix,
                     categorie: nweCategorie._id,
                     Quantite: req.body.quantite,
+                    image: newImage._id,
                     Description: req.body.description
                    });NewProduit.save()
               } else { 
+                var newImage = new ImageProduit({
+                    Imageone: req.files.image1[0].filename,
+                    Imagetwo: req.files.image2[0].filename,
+                    Imagethee: req.files.image3[0].filename,
+                    Imagefour: req.files.image4[0].filename,
+                  
+                 });newImage.save()
+                 console.log(req.files.image2[0].filename)
                var NewProduit = new Produit({
                 Produit: req.body.produit,
                 Prix: req.body.prix,
                 categorie: req.body.categorie,
                 Quantite: req.body.quantite,
+                image: newImage._id,
                 Description: req.body.description
                });NewProduit.save()
               }

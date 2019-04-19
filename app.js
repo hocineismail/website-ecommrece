@@ -8,9 +8,11 @@ const session = require("express-session");
 const flash = require("connect-flash"); 
 const passport = require("passport");
 var routesAdmin = require('./routes/routesAdmin/routesAdmin')
-
+const Produit = require("./models/produit");
+const ImageProduir = require("./models/imageProduit")
+const Categorie = require("./models/categorie")
 var auth = require('./routes/auth/auth')
-mongoose.connect("mongodb://localhost:27017/projet-Univ");
+mongoose.connect("mongodb://localhost:27017/projet-Univc");
 
 // routes
 
@@ -54,8 +56,12 @@ app.post(
     failureFlash: true
   })
 )
-app.get("/routes", (req,res) => {
-consoile.log("seachring routes")
+app.get("/", (req,res) => {
+ Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
+   console.log("hellooojk")
+   console.log(produits)
+  res.render("index",{produit: produits})
+ })
 })
 
 
