@@ -18,7 +18,15 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
     })
    
     })
-    
+
+
+    routesAdmin.get('/UserAdmins', (req,res )=> {
+        User.find({Role: "Admin"},(err,user)=> {
+            res.render("Admin/userAdmins",{user: user})
+        })
+       
+        })
+        
 
 
     routesAdmin.get('/admin', (req,res )=> {
