@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <link href="css/bootstrap.css" rel="stylesheet" />           
-             <link href="css/bootstrap-theme.css" rel="stylesheet" />
-            <script src="js/bootstrap.min.js"></script>
-            <link href="css/css.css" rel="stylesheet" />
-            <link href="css/icon.css" rel="stylesheet"  />
+            <link href="/css/bootstrap.css" rel="stylesheet" />           
+             <link href="/css/bootstrap-theme.css" rel="stylesheet" />
+            <script src="/js/bootstrap.min.js"></script>
+            <link href="/css/css.css" rel="stylesheet" />
+            <link href="/css/icon.css" rel="stylesheet"  />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
@@ -42,35 +42,7 @@
       <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;padding: 10px  ">
             <h3 class="w3-bar-item">Option avancer</h3>
             
-            <div class="form-group" >
-                    <label for="exampleFormControlSelect1">Recherche par categorie</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>auto</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                    </select>
-                  
-                
-                </div>
-                  <label for="exampleFormControlSelect1">Recherche par une Somme</label>
-                  <div class="row">
-                      
-                        <div class="col">
-                          <input type="number" class="form-control" placeholder="100DA">
-                        </div>
-                        <div class="col">
-                          <input type="number" class="form-control" placeholder="1000000DA">
-                        </div>
-                      </div>
-                      <hr>
-                 
-                      <button type="submit" class="btn btn-primary">recherche</button>
+          
                 
                       
                       
@@ -100,7 +72,7 @@
                               </ul>
                               <span class="navbar-text">
                                     <a href="#" class="notification" style="padding-right: 20px">
-                                            <img src="card.png" style="  width:  30px;border-radius: 100%;" />
+                                            <img src="/card.png" style="  width:  30px;border-radius: 100%;" />
                                             <span class="badge"style="margin-right: 20px">3</span>
                                           </a>
                                            
@@ -117,7 +89,7 @@
           <div class="w3-container">
                 <div class="container">
                         <div class="row">
-                            <% produit.forEach(function(produit)  {  %>
+                          
                             <div class="col-md-4" style="padding-top: 100px" > 
                                 <div class="card" style="width: 15rem;">
                                         <h5 class="card-title" style="text-align: center"><%= produit.Produit%></h5>
@@ -131,7 +103,7 @@
                                     </div>
             
                                 
-                                <% })%>    
+                              
             
                         </div>
                     </div>

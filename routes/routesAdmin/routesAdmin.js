@@ -21,6 +21,22 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
    
     })
     
+
+
+    routesAdmin.get('/listProduit', (req,res )=> {
+        Produit.find({}).populate('categorie').populate('image').exec((err,Produits)=> {
+            res.render("Admin/listProduit",{produits: Produits})
+        })
+       
+        }) 
+
+  routesAdmin.get('/DeleteProduit/:_id',(req, res) => {
+      Produit.findOneAndDelete({_id: req.params._id},(err,success)=> {
+          if (success) {
+              res.redirect("Admin/listProduit")
+          }
+      })
+  })      
 //this code for uplauding the file of produit
   // Init Upload
 

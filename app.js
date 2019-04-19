@@ -63,7 +63,13 @@ app.get("/", (req,res) => {
   res.render("index",{produit: produits})
  })
 })
-
+app.get("/produitDetail/:_id", (req,res) => {
+  Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
+    console.log("hellooojk")
+    console.log(produits)
+   res.render("produitDetail",{produit: produits})
+  })
+ })
 
 app.get("/404", (req,res) => {
   res.render("404")
