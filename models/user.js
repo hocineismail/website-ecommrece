@@ -1,7 +1,7 @@
 var bcrypt = require("bcrypt-nodejs");
 var mongoose = require("mongoose");
 var SALT_FACTOR = 10;
-
+var Schema = mongoose.Schema
 var userSchema = mongoose.Schema({
     Firstname: {type: String, },
     Lastname: {type: String, },
@@ -12,10 +12,10 @@ var userSchema = mongoose.Schema({
     email: { type: String,  unique: true },
     password: { type: String,  },
     createdAt: { type: Date, default: Date.now },
-    user:  { type: String,  unique: true },
-    role: {
+    user:  { type: String },
+    client: {
         type: Schema.Types.ObjectId,
-        ref: 'Role'
+        ref: 'Client'
       }
 });
 

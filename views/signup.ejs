@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
+            <link href="css/bootstrap.css" rel="stylesheet" />           
+             <link href="css/bootstrap-theme.css" rel="stylesheet" />
+            <script src="js/bootstrap.min.js"></script>
+            <link href="css/css.css" rel="stylesheet" />
+            <link href="css/icon.css" rel="stylesheet"  />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-<title>انشاء حساب جديد</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="logo.png" type="image/gif">
 
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  
-<link href="https://fonts.googleapis.com/css?family=Cairo" rel="stylesheet">
-<script
-src="https://code.jquery.com/jquery-3.2.1.min.js"
-integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-crossorigin="anonymous"></script>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="/css/signup.css">
+            <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
 
 </head>
-<body style="  font-family: 'Cairo', sans-serif;">
+<body style="margin-bottom: 100px"  >
         <div class="mobile">
                 <div class="container" style="padding-top: 2%;width: 350px;">
-                <h2 style="text-align: center ">انشاء حساب جديد
+                <h2 style="text-align: center"> nouveau compte
                   </h2><br><br>
               
                 <% errors.forEach(function(error) { %>
@@ -44,77 +36,57 @@ crossorigin="anonymous"></script>
  
 
   <div class="input-container">
-        <input class="form-control" style="margin-right: 5px;text-align: right" type="text"  placeholder="الاسم" name="Firstname" required>
-        <input class="form-control" type="text" style="text-align: right" placeholder="اللقب" name="Lastname" required> 
-        <i class="fa fa-user icon"></i>
+      <label>Le prenom:</label>
+        <input class="form-control"  type="text"  placeholder="Le prenom" name="Firstname" required>
+        <label>Le nom</label>
+        <input class="form-control" type="text" placeholder="le nom" name="Lastname" required> 
+
     </div>
   <div class="input-container">
-        <input class="form-control"  type="text" style="text-align: right" placeholder="البريد الالكتروني" name="username" required>
-    <i class="fa fa-envelope icon"></i>
+      <label>Email:</label>
+        <input class="form-control"  type="text" placeholder="Email" name="username" required>
+    
      </div>
      <div class="input-container">
-            <input class="form-control" dir="rtl" style="text-align: right" type="date" placeholder="تاريخ الميلاد" name="Birthday" required>
-        <i class="fa fa-calendar icon"></i>
+       <label>Date de naissance:</label>
+            <input class="form-control"  type="date" placeholder="Date de naissance" name="Birthday" required>
+        
          </div>
          <div class="input-container">
-               
-                <select class="form-control" dir="rtl"  name="Sexe" required>
-                  <option >ذكر</option>
-                  <option >انثى</option>
+            <label>Sexe:</label>
+                <select class="form-control"   name="Sexe" required>
+                  <option >Homme</option>
+                  <option >Femme</option>
                 
                 </select>
-                <i class="fa fa-gitl icon">الجنس</i>
+              
               </div>   
 
              
 
      <div class="input-container" >
-          <input class="form-control" style="text-align: right"  type="text" placeholder="رقم الهاتف" name="Phone">
-          <i class="fas fa-phone icon"></i>
+        <label>Numero de telephone:</label>
+          <input class="form-control"  type="text" placeholder="Numero de telephone" name="Phone">
+      
      </div>
 
-     <div class="input-container" dir="rtl" required>
-      <label > <input type="radio" value="Teacher" name="Role" @click="add1">&nbsp;معلم  &nbsp; &nbsp;&nbsp; </label>
-      <label> <input type="radio" value="Student"  name="Role" @click="add2">  طالب&nbsp;&nbsp;  </label>
+     <div class="input-container"  required>
+      <label > <input type="radio" value="Admin" name="user">&nbsp;Admin  &nbsp; &nbsp;&nbsp; </label>
+      <label> <input type="radio" value="Client"  name="user" >  Client&nbsp;&nbsp;  </label>
       
     </div>
   
-    <div class="input-container" >
-        
-      <select class="form-control" id="target" dir="rtl" name="Phase">
-        <% phases.forEach(function(phase) {%>
-         <option value="<%= phase._id %>"> <%= phase.Phase %> </option> 
-        <% })%>
-      </select>
-      <i class="fas  icon"> الطور</i>
-   </div>  
-   <div class="input-container"v-show="teacher" >
-        
-    <select class="form-control"  dir="rtl" name="Speciality">
-     
-       <option> معلم </option> 
-       <option> خبير </option> 
-    
-    </select>
-    <i class="fas  icon"> اختصاص</i>
- </div>  
   
-     <div   v-show="student"  class="input-container" >
-      <select name="Level" id="level"  class="form-control"  dir="rtl" >
-        </select><i class="fas  icon"> الصف</i>
-     </div>
-     <div id="semster"  v-show="student"  class="input-container" >
-
-    </div>
 
 
      <div class="input-container">
-          <input class="form-control" style="text-align: right"  type="text" placeholder="العنوان" name="Address">
-          <i class="fas fa-map-marker-alt icon"></i>
+        <label>Adress:</label>
+          <input class="form-control"  type="text" placeholder="Adress" name="Address">
+         
      </div>               
   <div class="input-container">
-        <input class="form-control" style="text-align: right" type="password" placeholder="كلمة السر" id="password" name="password" required>
-       <i class="fa fa-key icon"></i>
+      <label>Mot de passe:</label>
+        <input class="form-control" type="password" placeholder="Mot de passe" id="password" name="password" required>
     </div>
 
 
@@ -123,16 +95,13 @@ crossorigin="anonymous"></script>
 
 
    <div class="input-container">
-        <input class="form-control" style="text-align: right"  type="password" placeholder="اعادة كتابة كلمة السر" id="confirm_password" required>
-        <i class="fa fa-key icon"></i>  
+      <label>Confirme le mot de passe:</label>
+        <input class="form-control"  type="password" placeholder="Confirme le mot de passe" id="confirm_password" required>  
 </div>
- <div v-if="input">
-    <button type="submit" class="btn">انشاء حساب</button>
- </div>
- <div v-else>
-    <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">انشاء حساب</a>
+
+    <button type="submit" class="btn btn-success">Creer votre compe</button>
  
-</div> 
+  
 
 </form>
 
@@ -160,110 +129,6 @@ confirm_password.onkeyup = validatePassword;
 </script>
 
 
-<script>
-    $(function() {
-        $("#target").on("click", function () {
-          console.log( $("#target").val());
-          var Phase = $('#target').val();
-          $.ajax({
-            type: 'post',
-            url: '/searchlevelsignup',
-            dataType: "text",  
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify({
-              Phase: Phase
-            }),
-                   
-              cache: false,
-                timeout: 5000,
-                complete: function() {
-                 
-                  console.log('process complete');
-                  console.log(data.Phase)
-                },
-                success: function(res) {
-                  
-                  var resu = JSON.parse(res)
-         var html;
-         
-        
-         html = ''
-          
-         for (var i = 0; i< resu.length; i++) {
-          
-            html += '<option value ="'+ resu[i]._id + '">' + resu[i].Level +  '</option>';
-          
-        }
-        html += ''
-         
-         $('#level').html(html);
-       },
-
-                error: function() {
-                 
-                  console.log('process error');
-                },
-          
-          });
-        });
-      });
-     
-
-</script>
-
-<script>
-  $(function() {
-      $("#level").on("click", function () {
-        console.log("clicla 3liya nmo9ch")
-        console.log( $("#level").val());
-        var level = $('#level').val();
-        $.ajax({
-          type: 'post',
-          url: '/searchsemstersignup',
-          dataType: "text",  
-          contentType: "application/json; charset=utf-8",
-          data: JSON.stringify({
-            Level: level
-          }),
-                 
-            cache: false,
-              timeout: 5000,
-              complete: function() {
-               
-                console.log('process complete');
-                console.log(data.Level)
-              },
-              success: function(res) {
-                
-                var resu = JSON.parse(res)
-       var html;
-       
-      
-       html = '<select name="Semster" id="data"  class="form-control"  dir="rtl" >'
-        
-       for (var i = 0; i< resu.length; i++) {
-        
-          html += '<option value ="'+ resu[i]._id + '">' + resu[i].Semster +  '</option>';
-        
-      }
-      html += '</select><i class="fas  icon"> الفصل</i>'
-       
-       $('#semster').html(html);
-     },
-
-              error: function() {
-               
-                console.log('process error');
-              },
-        
-        });
-      });
-    });
-   
-
-</script>
-
-    
     
       </div>
 

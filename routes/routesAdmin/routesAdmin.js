@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const Categorie = require('../../models/categorie')
 const Produit = require('../../models/produit')
+const Client = require('../../models/client')
 const ImageProduit = require('../../models/imageProduit')
 
 
@@ -21,7 +22,7 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
 
 
     routesAdmin.get('/UserAdmins', (req,res )=> {
-        User.find({Role: "Admin"},(err,user)=> {
+        User.find({user: "Admin"},(err,user)=> {
             res.render("Admin/userAdmins",{user: user})
         })
        
