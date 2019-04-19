@@ -9,9 +9,7 @@ const path = require("path");
 const Categorie = require('../../models/categorie')
 const Produit = require('../../models/produit')
 const ImageProduit = require('../../models/imageProduit')
-routesAdmin.get('/admin', (req,res )=> {
-res.render("Admin/admin")
-})
+
 
 
 routesAdmin.get('/ajouterProduit', (req,res )=> {
@@ -23,7 +21,7 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
     
 
 
-    routesAdmin.get('/listProduit', (req,res )=> {
+    routesAdmin.get('/admin', (req,res )=> {
         Produit.find({}).populate('categorie').populate('image').exec((err,Produits)=> {
             res.render("Admin/listProduit",{produits: Produits})
         })
@@ -33,7 +31,7 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
   routesAdmin.get('/DeleteProduit/:_id',(req, res) => {
       Produit.findOneAndDelete({_id: req.params._id},(err,success)=> {
           if (success) {
-              res.redirect("Admin/listProduit")
+              res.redirect("/listProduit")
           }
       })
   })      

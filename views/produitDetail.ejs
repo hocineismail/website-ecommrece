@@ -12,7 +12,63 @@
             <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <style>
-    
+    * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  display: none;
+}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
 .notification {
 
   color: white;
@@ -27,6 +83,7 @@
 
 .notification .badge {
   position: absolute;
+ 
   top: -10px;
   right: -10px;
   padding: 5px 10px;
@@ -40,9 +97,21 @@
        
 
       <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;padding: 10px  ">
-            <h3 class="w3-bar-item">Option avancer</h3>
+            <h3 class="w3-bar-item" style="text-align: center">Detail</h3>
             
-          
+            <h2 class="card-title" style="text-align: center"><%= produit.Produit%></h2>
+            <img class="card-img-top" src="/uploads/<%= produit.image.Imageone %>" alt="Card image cap">
+            <div class="card-body">
+              <h1 > <%= produit.Prix + " " %>DA</h1>
+              <p class="card-text"><%= produit.Description%></p>
+              <hr>
+              <div class="alert alert-warning" role="alert">
+           <p style=" font-size: 12px">   Pour commender Ce Prduit vous devez se connecter ou sign up </p>
+            </div>
+              <button type="button" class="btn btn-success" onclick="window.location.href='/register'">Register</button>
+                <button type="button" class="btn btn-outline-success"  onclick="window.location.href='/login'">Se Connecter</button>
+                            
+            </div>
                 
                       
                       
@@ -87,26 +156,37 @@
     
           
           <div class="w3-container">
-                <div class="container">
-                        <div class="row">
-                          
-                            <div class="col-md-4" style="padding-top: 100px" > 
-                                <div class="card" style="width: 15rem;">
-                                        <h5 class="card-title" style="text-align: center"><%= produit.Produit%></h5>
-                                        <img class="card-img-top" src="uploads/<%= produit.image.Imageone %>" alt="Card image cap">
-                                        <div class="card-body">
-                                          <h1 > <%= produit.Prix + " " %>DA</h1>
-                                          <p class="card-text"><%= produit.Description%></p>
-                                          <a href="/produitDetail/<%= produit._id %>" class="btn btn-primary"> Details</a>
-                                        </div>
-                                      </div>
-                                    </div>
-            
-                                
-                              
-            
+                <div class="row">
+                        <div class="column">
+                          <img  src="/uploads/<%= produit.image.Imageone %>" alt="Nature" style="width:50%" onclick="myFunction(this);">
                         </div>
-                    </div>
+                        <div class="column">
+                          <img  src="/uploads/<%= produit.image.Imagetwo %>" alt="Snow" style="width:50%" onclick="myFunction(this);">
+                        </div>
+                        <div class="column">
+                          <img  src="/uploads/<%= produit.image.Imagethee %>" alt="Mountains" style="width:50%" onclick="myFunction(this);">
+                        </div>
+                        <div class="column">
+                          <img  src="/uploads/<%= produit.image.Imagefour %>" alt="Lights" style="width:50%" onclick="myFunction(this);">
+                        </div>
+                      </div>
+                      
+                      <div class="container">
+                        <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+                        <img id="expandedImg" style="width:100%">
+                        <div id="imgtext"></div>
+                      </div>
+                      
+                      <script>
+                      function myFunction(imgs) {
+                        var expandImg = document.getElementById("expandedImg");
+                        var imgText = document.getElementById("imgtext");
+                        expandImg.src = imgs.src;
+                        imgText.innerHTML = imgs.alt;
+                        expandImg.parentElement.style.display = "block";
+                      }
+                      </script>
+              
           </div>
           
           </div>
