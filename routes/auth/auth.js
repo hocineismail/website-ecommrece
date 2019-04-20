@@ -35,7 +35,7 @@ auth.post("/signup", function(req, res) {
 	User.findOne({ email: email }, function(err, user) {
 	if (err) { return next(err); }
 	if (user) {
-	req.flash("error", "الحساب موجود من قبل");
+	req.flash("error", "ce User existe");
 	return res.redirect("/signup");
 	}
 	
