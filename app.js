@@ -11,7 +11,8 @@ var routesAdmin = require('./routes/routesAdmin/routesAdmin')
 const Produit = require("./models/produit");
 const ImageProduir = require("./models/imageProduit")
 const Categorie = require("./models/categorie")
-var auth = require('./routes/auth/auth')
+const auth = require('./routes/auth/auth')
+const client = require('./routes/client/client')
 mongoose.connect("mongodb://localhost:27017/projet-Unic");
 var setUpPassport = require('./routes/setuppassport')
 
@@ -39,6 +40,7 @@ app.use(passport.session())
 app.use(flash());
 app.use(routesAdmin)
 app.use(auth)
+app.use(client)
 
 
 app.get("/produitDetail/:_id",(req,res) => {
