@@ -83,6 +83,18 @@
           <div class="w3-container">
               <h1 style="text-align: center">Liste des produits</h1>
           </div>
+          <div class="container">
+            <% errors.forEach(function(error) { %>
+              <div class="alert alert-danger" role="alert">
+              <%= error %>
+              </div>
+              <% }) %>
+              <% infos.forEach(function(info) { %>
+              <div class="alert alert-info" role="alert">
+              <%= info %>
+              </div>
+              <% }) %>
+          </div>
 <table class="table table-light">
         <thead>
           <tr>
@@ -103,7 +115,7 @@
             <td><%= user.email %></td>
             <td><%= user.Sexe %></td>
             <td><%= user.Address %></td>
-            <td><a href="/DeleteUser/<%= user._id %>" class="btn btn-danger">D</a><button class="btn btn-success">M</button></td>
+            <td><a href="/DeleteAdmin/<%= user._id %>" class="btn btn-danger">D</a><button class="btn btn-success">M</button></td>
          
           </tr>
          <% }) %>

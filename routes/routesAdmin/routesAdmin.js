@@ -11,7 +11,12 @@ const Produit = require('../../models/produit')
 const Client = require('../../models/client')
 const ImageProduit = require('../../models/imageProduit')
 
-
+routesAdmin.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  res.locals.errors = req.flash("error");
+  res.locals.infos = req.flash("info");
+  next();
+ })
 
 routesAdmin.get('/ajouterProduit', (req,res )=> {
     Categorie.find({},(err,categories)=> {
@@ -30,7 +35,17 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
         })
         
 
-
+routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
+  User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
+    if (err) { 
+      req.flash("error", "il ya une erreur ");
+      return res.redirect("/UserAdmins")}
+     else {
+      req.flash("info", "Admin est suppremer");
+      return res.redirect("/UserAdmins")
+     }
+  })
+})
     routesAdmin.get('/admin', (req,res )=> {
         Produit.find({}).populate('categorie').populate('image').exec((err,Produits)=> {
             res.render("Admin/listProduit",{produits: Produits})
