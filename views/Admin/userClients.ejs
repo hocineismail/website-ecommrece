@@ -103,6 +103,7 @@
             <th scope="col">email</th>
             <th scope="col">sexe</th>
             <th scope="col">adress</th>
+            <th scope="col">adress</th>
             <th scope="col">edite</th>
           </tr>
         </thead>
@@ -115,7 +116,73 @@
             <td><%= client.email %></td>
             <td><%= client.Sexe %></td>
             <td><%= client.Address %></td>
-            <td><a href="/DeleteClient/<%= client._id %>" class="btn btn-danger">D</a></td>
+            <td><%= client.client %></td>
+            <td><a href="/DeleteClient/<%= client._id %>" class="btn btn-danger">D</a><button onclick="document.getElementById('<%= client._id %>').style.display='block'" class="w3-button w3-black">Modifier</button>
+
+                <div id="<%= client._id %>" class="w3-modal">
+                  <div class="w3-modal-content">
+                    <div class="w3-container">
+                      <span onclick="document.getElementById('<%= client._id %>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                     <div style="padding: 100px"> 
+                        <form action="/signup" method="post">
+ 
+
+                            <div class="input-container">
+                                <label>Le prenom:</label>
+                                  <input class="form-control"  type="text"  value="<%= client.Firstname %>" name="Firstname" required>
+                                  <label>Le nom</label>
+                                  <input class="form-control" type="text" value="<%= client.Lastname %>" name="Lastname" required> 
+                          
+                              </div>
+                            <div class="input-container">
+                                <label>Email:</label>
+                                  <input class="form-control"  type="text" value="<%= client.email %>" name="username" required>
+                              
+                               </div>
+                             
+                                   <div class="input-container">
+                                      <label>Sexe:</label>
+                                          <select class="form-control"   name="Sexe" value="<%= client.Sexe %>" required>
+                                            <option >Homme</option>
+                                            <option >Femme</option>
+                                          
+                                          </select>
+                                        
+                                        </div>   
+                          
+                                       
+                          
+                               
+                          
+                             
+                            
+                            
+                          
+                          
+                               <div class="input-container">
+                                  <label>Adress:</label>
+                                    <input class="form-control"  type="text" value="<%= client.Address %>" name="Address">
+                                   
+                               </div>               
+                          
+                          
+                          
+                          
+                          
+                          
+                            
+                          
+                              <button type="submit" class="btn btn-success">Update</button>
+                           
+                            
+                          
+                          </form>
+
+                      
+                    </div>
+                    </div>
+                  </div>
+                </div></td>
          
           </tr>
          <% }) %>

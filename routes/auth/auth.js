@@ -3,6 +3,7 @@ var auth = express.Router();
 var express = require("express");
 var passport = require("passport");
 var User = require("../../models/user");
+var Client = require("../../models/client");
 var session = require('express-session');
 auth.use(session({ cookie: { maxAge: 60000 }, 
     secret: 'woot',
@@ -38,7 +39,36 @@ auth.post("/signup", function(req, res) {
 	req.flash("error", "ce User existe");
 	return res.redirect("/signup");
 	}
-	
+	if ( req.body.user === "Client"){
+				
+		var newClient = new Client({});newClient.save((err,SAVE)=> {
+			if (SAVE) {
+				console.log(newClient._id)
+				var newUser = new User({
+					Firstname: req.body.Firstname,
+					email: email,
+					Lastname: req.body.Lastname,
+					Birthday: req.body.Birthday,
+					Sexe: req.body.Sexe,
+					user: req.body.user,
+					Address: req.body.Address,
+					Phone: req.body.Phone,
+					password: req.body.password,  
+					client: newClient._id
+				});
+					newUser.save({},function(err, success){
+						if (err) { console.log( " ERROR ")}
+						if (success) {
+							console.log("cbn kolch nimral")
+							res.redirect("/routes")
+						 }
+					
+							}); 
+			}
+		})
+		
+					
+	} else  { 
 	var newUser = new User({
 	Firstname: req.body.Firstname,
 	email: email,
@@ -49,26 +79,18 @@ auth.post("/signup", function(req, res) {
 	Address: req.body.Address,
 	Phone: req.body.Phone,
 	password: req.body.password,  
-});console.log(newUser)
+});
 	newUser.save({},function(err, success){
 		if (err) { console.log( " ERROR ")}
 		if (success) {
-			if ( newUser.Role === "Client"){
-				var newClient = new Client({
-					client: "Client",
-					
-		
-				});
-				newClient.save({},(err, saved)=>{
-                    newUser.client = newClient._id
-                });newUser.save()
-
-			} 
+		 
 			res.redirect("/routes")
 		 }
 	
 			});
-			});	
+			};	
+			});
+		
 
  },passport.authenticate("login", {
 	 
