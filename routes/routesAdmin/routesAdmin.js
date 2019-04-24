@@ -209,5 +209,12 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
           }
         });
       });
-      
+      function ensureAuthenticated(req, res, next) {
+        if (req.isAuthenticated()) {
+        next();
+        } else {
+         
+        res.redirect("/");
+        }
+         }
 module.exports = routesAdmin;
