@@ -52,7 +52,7 @@ routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
 routesAdmin.get('/UserClients', (req,res )=> {
   User.find({user: "Client"}).populate('client').exec((err,client)=> {
     console.log(client)
-      res.render("Admin/UserClients",{client: client})
+      res.render("Admin/userClients",{client: client})
   })
  
   })
@@ -61,8 +61,10 @@ routesAdmin.get('/UserClients', (req,res )=> {
     User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
       if (err) { 
         req.flash("error", "il ya une erreur ");
-        return res.redirect("/UserClients")}
+        return res.redirect("/UserClients")
+      }
        else {
+
         req.flash("info", "Client est suppremer");
         return res.redirect("/UserClients")
        }
