@@ -105,7 +105,15 @@ body {
               <h1 > <%= produit.Prix + " " %>DA</h1>
               <p class="card-text"><%= produit.Description%></p>
               <hr>
+
+
+              <% if (currentUser) { %>
+                <a class="nav-link" href="/Logout"><i class="fas fa-sign-out-alt icon"></i>  </a>  <% }  %> 
+
+
+
               <div class="alert alert-warning" role="alert">
+                <h1> <%= currentUser %> </h1>
            <p style=" font-size: 12px">   Pour commender Ce Prduit vous devez se connecter ou sign up </p>
             </div>
               <button type="button" class="btn btn-success" onclick="window.location.href='/register'">Register</button>

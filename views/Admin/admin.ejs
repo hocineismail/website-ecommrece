@@ -44,7 +44,9 @@
             <a class="nav-link" href="/ajouterProduit">Ajouter un produit <span class="sr-only">(current)</span></a>
             <a class="nav-link" href="#">Liste des admins </a>
             <a class="nav-link" href="#">Liste des clients </a>
-            <a class="nav-link" href="#">Statistique </a>
+            <a class="nav-link" href="#"><% if (currentUser) { %>
+              <a class="nav-link" href="/Logout"><i class="fas fa-sign-out-alt icon">yyyyy</i>  </a>  <% }  %> 
+</a>
           
           </div>
           
@@ -70,10 +72,14 @@
                         <a class="nav-link" href="#">Pricing</a>
                       </li>
                     </ul>
+                    
+                      <a class="nav-link" href="/Logout"><i class="fas fa-sign-out-alt icon">sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf</i>  </a> 
+                    <%if (currentUser) { %>
                     <span class="navbar-text">
 
-                  <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/login'">Se Deconnecter</button>
+                  <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
                     </span>
+                    <% } %>
                   </div>
           
                 </nav>

@@ -13,8 +13,13 @@ const ImageProduir = require("./models/imageProduit")
 const Categorie = require("./models/categorie")
 var auth = require('./routes/auth/auth')
 mongoose.connect("mongodb://localhost:27017/projet-Unic");
+var setUpPassport = require('./routes/setuppassport')
 
+
+setUpPassport()
 // routes
+
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -29,23 +34,32 @@ app.use(
 
   })
 )
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(flash());
 app.use(routesAdmin)
 app.use(auth)
 
-var setUpPassport = require('./routes/setuppassport')
+
+app.get("/produitDetail/:_id",(req,res) => {
+  Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
+    console.log("hellooojk")
+    console.log(req.user)
+   res.render("produitDetail",{produit: produits})
+  })
+ })
 
 
-setUpPassport()
-app.get("/routes",(req,res)=>{
-  if (req.user.user === "Client") {
+app.get("/routes" , (req,res)=>{
+ console.log("routeess")
+  console.log(req.user)
+  if (req.user === "Client") {
      res.redirect("/")
   } else {
     res.redirect("/admin")
   }
 })
-app.use(passport.initialize())
-app.use(passport.session())
+
 app.use(flash())
 
 //using folder views
@@ -57,7 +71,7 @@ app.set('view engine', 'ejs')
 app.post(
   '/login',
   passport.authenticate('login', {
-    successRedirect: '/routes',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
   })
@@ -69,13 +83,6 @@ app.get("/", (req,res) => {
   res.render("index",{produit: produits})
  })
 })
-app.get("/produitDetail/:_id", (req,res) => {
-  Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
-    console.log("hellooojk")
-    console.log(produits)
-   res.render("produitDetail",{produit: produits})
-  })
- })
 
 app.get("/404", (req,res) => {
   res.render("404")
