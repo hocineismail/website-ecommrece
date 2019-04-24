@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema
 var clientSchema = Schema({
- client: { type: String, required: true },
+ IsActif: { type: Boolean, default: false },
  createdAt: { type: Date, default: Date.now },
  panier: {
     type: Schema.Types.ObjectId,
