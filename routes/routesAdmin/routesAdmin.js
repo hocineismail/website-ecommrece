@@ -46,6 +46,31 @@ routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
      }
   })
 })
+
+
+
+routesAdmin.get('/UserClients', (req,res )=> {
+  User.find({user: "Client"}).populate('client').exec((err,client)=> {
+    console.log(client)
+      res.render("Admin/UserClients",{client: client})
+  })
+ 
+  })
+
+  routesAdmin.get("/DeleteClient/:_id",(req,res)=>{
+    User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
+      if (err) { 
+        req.flash("error", "il ya une erreur ");
+        return res.redirect("/UserClients")}
+       else {
+        req.flash("info", "Client est suppremer");
+        return res.redirect("/UserClients")
+       }
+    })
+  })
+  
+
+
     routesAdmin.get('/admin', (req,res )=> {
         Produit.find({}).populate('categorie').populate('image').exec((err,Produits)=> {
             res.render("Admin/listProduit",{produits: Produits})
