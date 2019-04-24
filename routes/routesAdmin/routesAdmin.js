@@ -47,7 +47,24 @@ routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
   })
 })
 
-
+routesAdmin.get("/ClientActif/:_id",(req,res)=> {
+  Client.findOne({_id: req.params._id},(err,CLIENT)=> {
+    if (CLIENT) {
+      if (CLIENT.IsActif) {
+        CLIENT.IsActif = false
+        CLIENT.save()
+      } else {
+        CLIENT.IsActif = true
+        CLIENT.save()
+      }
+      req.flash("info", "change d etat ");
+      res.redirect("/UserClients")
+    } else {
+      req.flash("error", "il ya une erreur ");
+      res.redirect("/UserClients")
+    }
+  })
+})
 
 routesAdmin.get('/UserClients', (req,res )=> {
   User.find({user: "Client"}).populate('client').exec((err,client)=> {

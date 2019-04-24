@@ -81,7 +81,7 @@
     
           
           <div class="w3-container">
-              <h1 style="text-align: center">Liste des produits</h1>
+              <h1 style="text-align: center">Liste des Clients</h1>
           </div>
           <div class="container">
             <% errors.forEach(function(error) { %>
@@ -103,7 +103,7 @@
             <th scope="col">email</th>
             <th scope="col">sexe</th>
             <th scope="col">adress</th>
-            <th scope="col">adress</th>
+            <th scope="col">etat</th>
             <th scope="col">edite</th>
           </tr>
         </thead>
@@ -116,7 +116,11 @@
             <td><%= client.email %></td>
             <td><%= client.Sexe %></td>
             <td><%= client.Address %></td>
-            <td><%= client.client %></td>
+            <% if (client.client.IsActif) { %>
+            <td> <button onclick="window.location.href='/ClientActif/<%= client.client._id %>'"class="btn btn-success"> OUI </button></td>
+            <% } else {%>
+                <td> <button onclick="window.location.href='/ClientActif/<%= client.client._id %>'"  class="btn btn-danger"> NON </button></td>
+        <% } %>
             <td><a href="/DeleteClient/<%= client._id %>" class="btn btn-danger">D</a><button onclick="document.getElementById('<%= client._id %>').style.display='block'" class="w3-button w3-black">Modifier</button>
 
                 <div id="<%= client._id %>" class="w3-modal">
