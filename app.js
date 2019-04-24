@@ -35,12 +35,14 @@ app.use(
 
   })
 )
-app.use(passport.initialize())
-app.use(passport.session())
 app.use(flash());
 app.use(routesAdmin)
 app.use(auth)
 app.use(client)
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 
 
 app.get("/produitDetail/:_id",(req,res) => {

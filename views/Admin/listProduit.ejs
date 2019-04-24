@@ -70,10 +70,12 @@
                         <a class="nav-link" href="#">Pricing</a>
                       </li>
                     </ul>
-                    <span class="navbar-text">
-
-                  <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/login'">Se Deconnecter</button>
-                    </span>
+                    <%if (currentUser) { %>
+                      <span class="navbar-text">
+  
+                    <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
+                      </span>
+                      <% } %>
                   </div>
           
                 </nav>
