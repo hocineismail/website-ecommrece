@@ -8,7 +8,7 @@
             <link href="/css/icon.css" rel="stylesheet"  />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
             <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <style>
@@ -102,16 +102,27 @@ body {
             <h2 class="card-title" style="text-align: center"><%= produit.Produit%></h2>
             <img class="card-img-top" src="/uploads/<%= produit.image.Imageone %>" alt="Card image cap">
             <div class="card-body">
-              <h1 > <%= produit.Prix + " " %>DA</h1>
+                <div id="app">
+              <h1 v-model="PRIX"> <%= produit.Prix + " " %>DA</h1>
+          
               <p class="card-text"><%= produit.Description%></p>
               <hr>
-
+              
 
              <% if (currentUser) {  %>
               <form >
-                  <div id="app">
-                      <input type="number" v-model="TOTAL">
-                      <h4>{{ TOTAL }}</h4>
+                 
+                  <tr>
+                  
+                      <td>Quantite</td>
+                      <td><input class=" form-group txt" type="number" name="txt"/></td>
+                    </tr>
+                    <tr id="summation">
+                     
+                     
+                    <h4> TOTAL :  <span id="sum">0</span> DA </h4> 
+                    </tr>
+                     
                       
                     </div>
                 <botton class="btn btn-success">+ ajouter au panier</botton>
@@ -127,7 +138,7 @@ body {
                  <% } %>           
             </div>
                 
-                      
+          </div>          
                       
           </div>
           
@@ -152,7 +163,7 @@ body {
                                   <a class="nav-link" href="#">Pricing</a>
                                 </li>
                               </ul>
-                              <span class="navbar-text">
+                              <span class="navbar-text"> 
                               <% if (currentUser) {  %>
 
                                 <a href="#" class="notification" style="padding-right: 20px">
@@ -165,6 +176,7 @@ body {
                               </span>
                                            
                                           <% } else { %>
+                                          </span>
                                             <a href="#" class="notification" style="padding-right: 20px">
                                               <img src="/card.png" style="  width:  30px;border-radius: 100%;" />
                                          
@@ -214,6 +226,38 @@ body {
           </div>
           
           </div>
+
+<script>
+    $(document).ready(function(){
+  
+      //iterate through each textboxes and add keyup
+      //handler to trigger sum event
+      $(".txt").each(function() {
+  
+        $(this).keyup(function(){
+          calculateSum();
+        });
+      });
+  
+    });
+  
+    function calculateSum() {
+  
+      var sum = 0;
+      //iterate through each textboxes and add the values
+      $(".txt").each(function() {
+  
+        //add only if the value is number
+        if(!isNaN(this.value) && this.value.length!=0) {
+          sum += parseFloat(this.value);
+        }
+  
+      });
+      //.toFixed() method will roundoff the final sum to 2 decimal places
+      sum = sum * <%= produit.Prix %>
+      $("#sum").html(sum.toFixed(2));
+    }
+  </script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
           <script src="/vue/vue.js"></script>
 </body>

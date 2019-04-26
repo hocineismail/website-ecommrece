@@ -1,16 +1,15 @@
 new Vue({
     el: '#app',
     data: {
-        message: "Pricing",
+        TOTAL: "Pricing",
+        PRIX
     },
   
   methods: {
     
-    add1:  function () 
-    {
-       
-       
-    },
+   function () {
+       console.log(this.PRIX)
+   }
   
   },
   
