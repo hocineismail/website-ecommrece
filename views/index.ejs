@@ -98,16 +98,26 @@
                                   <a class="nav-link" href="#">Pricing</a>
                                 </li>
                               </ul>
+                              <%if (currentUser) { %>
+                                <span class="navbar-text">
+                                  <a href="#" class="notification" style="padding-right: 20px">
+                                    <img src="card.png" style="  width:  30px;border-radius: 100%;" />
+                                    <span class="badge"style="margin-right: 20px">3</span>
+                                  </a>
+                              <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
+                                </span>
+                                <% } else {  %>
                               <span class="navbar-text">
                                     <a href="#" class="notification" style="padding-right: 20px">
                                             <img src="card.png" style="  width:  30px;border-radius: 100%;" />
-                                            <span class="badge"style="margin-right: 20px">3</span>
+                                           
                                           </a>
                                            
                                  
                                     <button type="button" class="btn btn-success" onclick="window.location.href='/register'">Register</button>
                             <button type="button" class="btn btn-outline-success"  onclick="window.location.href='/login'">Se Connecter</button>
                               </span>
+                              <% } %>
                             </div>
                     
                           </nav>
