@@ -109,8 +109,11 @@ body {
 
              <% if (currentUser) {  %>
               <form >
-                <input type="number">
-                <input type="number">
+                  <div id="app">
+                      <input type="number" v-model="TOTAL">
+                      <h4>{{ TOTAL }}</h4>
+                      
+                    </div>
                 <botton class="btn btn-success">+ ajouter au panier</botton>
               </form>
              
@@ -211,6 +214,7 @@ body {
           </div>
           
           </div>
-     
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
+          <script src="/vue/vue.js"></script>
 </body>
 </html>

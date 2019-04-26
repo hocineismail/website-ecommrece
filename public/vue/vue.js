@@ -1,10 +1,7 @@
 new Vue({
     el: '#app',
     data: {
-  
-     input: false,
-    
-    
+        message: "Pricing",
     },
   
   methods: {
