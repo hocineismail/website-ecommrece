@@ -12,7 +12,41 @@
             <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <style>
-    
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
 .notification {
 
   color: white;
@@ -77,9 +111,7 @@
           
     
           
-          <div class="w3-container">
-              <h1 style="text-align: center">Mon Compte</h1>
-          </div>
+          
           <div class="container">
             <% errors.forEach(function(error) { %>
               <div class="alert alert-danger" role="alert">
@@ -92,7 +124,22 @@
               </div>
               <% }) %>
           </div>
+          <div class="w3-container">
+            <h1 style="text-align: center">Mon Compte</h1>
+        
+          <h2 style="text-align:center">Mes informations</h2>
 
+          <div class="card">
+            <img src="/user.png" alt="John" style="width:100%">
+            <h1><%= currentUser.Firstname + " "  + currentUser.Lastname %></h1>
+            <p class="title">Email :<%= currentUser.email %></p>
+            <p>Phone :<%= currentUser.Phone %></p>
+            <p>Sexe :<%= currentUser.Sexe %></p>
+            <p>Address :<%= currentUser.Address %></p>
+      
+            
+            <p><button>Edit mon profil</button></p>
+          </div></div>
       </div>
       </div>
       </body>
