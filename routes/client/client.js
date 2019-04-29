@@ -1,6 +1,6 @@
-var express = require("express");
-var client = express.Router();
-
+const express = require("express");
+const client = express.Router();
+const Lists = require("./models/lists")
 client.get("/Compte",(req,res)=> {
     res.render('Client/compteClient')
 })
