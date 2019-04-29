@@ -115,7 +115,7 @@ body {
                   <tr>
                   
                       <td>Quantite</td>
-                      <td><input class=" form-group txt" type="number" name="txt"/></td>
+                      <td><input class=" form-group txt" id="produitValue" type="number" name="txt"/></td>
                     </tr>
                     <tr id="summation">
                      
@@ -125,7 +125,7 @@ body {
                      
                       
                     </div>
-                <botton class="btn btn-success">+ ajouter au panier</botton>
+                <botton class="btn btn-success" id="Ajouter">+ ajouter au panier</botton>
               </form>
              
              <% }  else  {%>
@@ -260,5 +260,55 @@ body {
   </script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
           <script src="/vue/vue.js"></script>
+
+
+
+
+
+<script>
+  $(function() {
+      $("#Ajouter").on("click", function () {
+        console.log( $("#produitValue").val());
+        var ProduitValue = $('#produitValue').val();
+        var _id = $('#-id').val();
+        $.ajax({
+          type: 'post',
+          url: '/AddToList',
+          dataType: "text",  
+          contentType: "application/json; charset=utf-8",
+          data: JSON.stringify({
+            Quantite: ProduitValue,
+            _id: "<%= produit._id %>"
+          }), 
+              cache: false,
+              timeout: 5000,
+              complete: function() {
+               
+                console.log('process exam complete');
+                console.log(data.ProduitValue)
+              },
+              success: function(res) {
+                
+                var resu = JSON.parse(res)
+       var html;
+       
+      
+       html = '<div class="alert alert-success" role="alert">c est ajouter au panier!</div>'
+        
+       
+    
+       
+       $('#Success').html(html);
+     },
+              error: function() {
+               
+                console.log('process error');
+              },
+        
+        });
+      });
+    });
+   
+</script>
 </body>
 </html>
