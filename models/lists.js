@@ -9,6 +9,10 @@ const listSchema = Schema({
     type: Schema.Types.ObjectId,
     ref: 'Produit'
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
 
 });
 
