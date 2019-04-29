@@ -12,9 +12,11 @@ client.get("/List/achats",(req,res)=> {
 })
 
 client.post("/AddToList", (req, res) => {
+    
     const AddTList = new Lists({
         Quantite: req.body.Quantite,      
-        produit: req.body._id   
+        produit: req.body._id,
+        user: req.user._id   
     });AddTList.save((err, siccess) => {
         console.log(siccess)
     })
