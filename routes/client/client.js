@@ -1,15 +1,32 @@
+'use strict';
+
 const express = require("express");
 const client = express.Router();
 const Lists = require("../../models/lists");
 const async = require('async')
-
+const Produit = require("../../models/produit")
 client.get("/Compte",(req,res)=> {
     res.render('Client/compteClient')
 })
 
 
 client.get("/List/achats",(req,res)=> {
-    res.render('Client/itemProduit')
+    Produit.find({}, (err, lists) => {
+        let ListNoPay = [];
+        let listPay = []
+       if (lists) {
+           for (let i = 0; i < lists.length; i++) {
+               if (lists.Paye === true ){
+                   ListNoPay = ListNoPay.push(lists[i])
+                   
+               } else {
+                   listPay = listPay.push(lists[i])
+               }
+           }
+           res.render('Client/itemProduit', {ListNoPay: ListNoPay, listPay: listPay})
+       }
+    })
+   
 })
 client.get("/D", (req,res) => {
     Lists.remove({}, (err, deletee) => {
