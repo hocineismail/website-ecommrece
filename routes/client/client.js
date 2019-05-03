@@ -9,7 +9,15 @@ client.get("/Compte",(req,res)=> {
     res.render('Client/compteClient')
 })
 
-
+client.post("/update/achat/_id" ,(req, res) => {
+    Lists.findOne({user: req.user._id, produit: req.params._id}, (err, Update) => {
+        if (Update) {
+            Update.Quantite = req.body.Quantite;
+            Update.save();
+            req.redirect("/List/achats")
+        }
+    })
+})
 client.get("/List/achats",(req,res)=> {
     Lists.find({user: req.user._id}).populate({path: 'produit', populate: {path: 'image'} }).exec((err, lists) => {
         
