@@ -11,22 +11,13 @@ client.get("/Compte",(req,res)=> {
 
 
 client.get("/List/achats",(req,res)=> {
-    Lists.find({}).populate({path: 'produit', populate: {path: 'categorie'}, populate: {path: 'image'}}).exec((err, lists) => {
-        lists.forEach(element => {
-            console.log(element)
-        });
-        let ListNoPay = [];
-        let listPay = []
+    Lists.find({}).populate({path: 'produit', populate: {path: 'image'} }).exec((err, lists) => {
+        
+  
        if (lists) {
-           for (let i = 0; i < lists.length; i++) {
-               if (lists.Paye === true ){
-                   ListNoPay = ListNoPay.push(lists[i])
-                   
-               } else {
-                   listPay = listPay.push(lists[i])
-               }
-           }
-           res.render('Client/itemProduit', {ListNoPay: ListNoPay, listPay: listPay})
+         
+           console.log(lists)
+           res.render('Client/itemProduit', {List: lists})
        }
     })
    
