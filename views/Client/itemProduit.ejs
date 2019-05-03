@@ -156,7 +156,7 @@
                                      
                                       <p> Description: <%= list.produit.Description%></p>
                                       <p> Quantite: <input type="number" value="<%= list.Quantite %>" name="Quantite"/></p>
-                                      <p>PRIX: <%= list.produit.Prix %> DA / 1 </p>
+                                      <p> PRIX: <%= list.produit.Prix %> DA / 1 </p>
                                       <hr>
                                       <div  style="align-content: right">
                                       <button class="btn btn-primary form-control">Modier</button>
@@ -200,7 +200,7 @@
                  <h5><%= list.produit.Produit%></h5>
                 
                  <p> Description: <%= list.produit.Description%></p>
-                 <p> Quantite: <%= list.produit.Quantite %></p>
+                 <p> Quantite: <%= list.Quantite %></p>
                  <p>PRIX: <%= list.produit.Prix %> DA </p>
                  <hr>
                  <p style="text-align: right; color: green">TOTAL: <%= list.produit.Prix *  list.produit.Quantite %> DA</p>

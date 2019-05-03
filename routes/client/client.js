@@ -21,15 +21,26 @@ client.get("/Compte",(req,res)=> {
 client.get("/submitperone/:_id",(req,res)=> {
     Lists.findOne({user: req.user._id, _id: req.params._id}, (err, Update) => {
         console.log(Update)
- 
-        if (Update) {
-            Update.Paye = true;
-            Update.save();
-            req.flash("info", "Updating ");
-            res.redirect("/List/achats")
-        } else  { 
-        req.flash("error", "ce User existe");
-        res.redirect("/List/achats")}
+        Produit.findOne({_id: Update.produit}, (err, produit) => {
+            if (produit) {
+                console.log(produit)
+                if (produit.Quantite >= Update.Quantite) {
+                    let NewQuantete = produit.Quantite - Update.Quantite;
+                    produit.Quantite = NewQuantete;
+                    produit.save()
+                    console.log(produit)
+                    if (Update) {
+                        Update.Paye = true;
+                        Update.save();
+                        req.flash("info", "Updating ");
+                        res.redirect("/List/achats")
+                    } else  { 
+                    req.flash("error", "ce User existe");
+                    res.redirect("/List/achats")}
+                }
+            }
+        })
+       
     })
 })
 
