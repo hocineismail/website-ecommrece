@@ -106,12 +106,23 @@
                                 
                                   <div class="dropdown">
                                       <img src="card.png" style="  width:  30px;border-radius: 100%;" />
-                                        <span class="badge"style="margin-right: 20px;background-color: red;color: #fff">3</span>
+                                      <% var count = 0 %>
+                                      <% panier.forEach(function(list) { %>
+                                       <% count = count + 1 %>
+                                        <% }) %>
+                                        <span class="badge"style="margin-right: 20px;background-color: red;color: #fff">
+                                         <% if (count < 3 ) {%>
+
+                                          <%=  count %>
+                                         <% } else  { %>
+                                          <%=  count + " +" %>
+                                          <% }%>
+                                        </span>
                                       <div class="dropdown-content">
                                         <% panier.forEach(function(list) { %>
-                                      <a href="#"><h4> <%= list.produit.Produit %> <span style="float: right"><%= list.produit.Prix %> DA </span></h4></a>
+                                      <a href="#"><h4> <img src="/uploads/<%= list.produit.image.Imageone %>"  width="30px"/> <%= list.produit.Produit %> <span style="float: right"><%= list.produit.Prix %> DA </span></h4></a>
                                       <% }) %>
-                                      <a href="#">Afficher La liste</a>
+                                      <a href="/List/achats">Afficher La liste</a>
                                       </div>
                                     </div>
                               <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
