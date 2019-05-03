@@ -13,6 +13,7 @@ const ImageProduir = require("./models/imageProduit")
 const Categorie = require("./models/categorie")
 const auth = require('./routes/auth/auth')
 const client = require('./routes/client/client')
+const Lists = require("./models/lists");
 mongoose.connect("mongodb://localhost:27017/projet-Unic");
 var setUpPassport = require('./routes/setuppassport')
 
@@ -82,9 +83,14 @@ app.post(
 )
 app.get("/", (req,res) => {
  Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
-   console.log("hellooojk")
-   console.log(produits)
-  res.render("index",{produit: produits})
+   if (req.user) {
+  Lists.find({user: req.user._id, Paye: false}).exec((err ,panier) => {
+    console.log(panier)
+    res.render("index",{produit: produits, panier: panier})
+  })  } else {
+    res.render("index",{produit: produits})
+  }
+ 
  })
 })
 
