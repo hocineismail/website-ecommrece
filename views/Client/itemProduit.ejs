@@ -93,11 +93,13 @@
               <% }) %>
           </div>
           <div class="container"> 
+              <div class="card">
        <div class="row">
+         
            <% List.forEach(function(list) { %>
             <% if (list.Paye === false ) {%>
            <div class="col-md-12">
-                <div class="card">
+                <div class="card" style="margin: 10px">
                         <div class="card-body">
                           <div class="row"> 
                          <div class="col-md-2">
@@ -115,10 +117,13 @@
                       </div>
                       </div>
            </div>
+           <br>
+           <hr>
            <% } %>
            <% }) %>
+           <button class="btn btn-success  ml-auto" style="margin: 20px">Achter</button>
 
-        </div>
+          </div> </div>
         </div>
       </div>
       </div>
