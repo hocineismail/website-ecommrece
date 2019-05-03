@@ -11,7 +11,7 @@ client.get("/Compte",(req,res)=> {
 
 
 client.get("/List/achats",(req,res)=> {
-    Lists.find({}).populate({path: 'produit', populate: {path: 'image'} }).exec((err, lists) => {
+    Lists.find({user: req.user._id}).populate({path: 'produit', populate: {path: 'image'} }).exec((err, lists) => {
         
   
        if (lists) {
