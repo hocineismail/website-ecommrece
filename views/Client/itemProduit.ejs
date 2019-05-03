@@ -119,12 +119,12 @@
                                    </div>
                              
                                   <div  style="padding: 50px" >
-                                    <form action="/update/achat" method="post"> 
+                                    <form action="/update/achat/<%= list._id%>" method="post"> 
                                       <img src="/uploads/<%= list.produit.image.Imageone %>" style="float: right" width="100px"/>
                                       <h5><%= list.produit.Produit%></h5> 
                                      
                                       <p> Description: <%= list.produit.Description%></p>
-                                      <p> Quantite: <input type="number" value="<%= list.produit.Quantite %>" name="Quantite"/></p>
+                                      <p> Quantite: <input type="number" value="<%= list.Quantite %>" name="Quantite"/></p>
                                       <p>PRIX: <%= list.produit.Prix %> DA / 1 </p>
                                       <hr>
                                       <div  style="align-content: right">
@@ -139,10 +139,10 @@
                               </div>
                            <h5><%= list.produit.Produit%></h5> 
                            <p> Description: <%= list.produit.Description%></p>
-                           <p> Quantite: <%= list.produit.Quantite %></p>
+                           <p> Quantite: <%= list.Quantite %></p>
                            <p>PRIX: <%= list.produit.Prix %> DA </p>
                            <hr>
-                           <p style="text-align: right; color: green">TOTAL: <%= list.produit.Prix *  list.produit.Quantite %> DA</p>
+                           <p style="text-align: right; color: green">TOTAL: <%= list.produit.Prix *  list.Quantite %> DA</p>
                          </div>
                         </div>
                       </div>
