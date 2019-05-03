@@ -84,7 +84,7 @@ app.post(
 app.get("/", (req,res) => {
  Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
    if (req.user) {
-  Lists.find({user: req.user._id, Paye: false}).exec((err ,panier) => {
+  Lists.find({user: req.user._id, Paye: false}).populate({path: 'produit', populate: {path: 'image'} }).limit(3).exec((err,panier) => {
     console.log(panier)
     res.render("index",{produit: produits, panier: panier})
   })  } else {
