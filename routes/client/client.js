@@ -11,7 +11,10 @@ client.get("/Compte",(req,res)=> {
 
 
 client.get("/List/achats",(req,res)=> {
-    Produit.find({}, (err, lists) => {
+    Lists.find({}).populate({path: 'produit', populate: {path: 'categorie'}, populate: {path: 'image'}}).exec((err, lists) => {
+        lists.forEach(element => {
+            console.log(element)
+        });
         let ListNoPay = [];
         let listPay = []
        if (lists) {
