@@ -122,7 +122,34 @@
            <% } %>
            <% }) %>
            <button class="btn btn-success  ml-auto" style="margin: 20px">Achter</button>
-
+       </div>
+           <hr>
+<h3 style="text-align: center"> Ancien liste</h3>
+<% List.forEach(function(list) { %>
+  <% if (list.Paye === true ) {%>
+ <div class="col-md-12">
+      <div class="card" style="margin: 10px">
+              <div class="card-body">
+                <div class="row"> 
+               <div class="col-md-2">
+               <img src="/uploads/<%= list.produit.image.Imageone %>" width="100px" />
+               </div>
+               <div class="col-md-10">
+                 <h5><%= list.produit.Produit%></h5>
+                 <p> Description: <%= list.produit.Description%></p>
+                 <p> Quantite: <%= list.produit.Quantite %></p>
+                 <p>PRIX: <%= list.produit.Prix %> DA </p>
+                 <hr>
+                 <p style="text-align: right; color: green">TOTAL: <%= list.produit.Prix *  list.produit.Quantite %> DA</p>
+               </div>
+              </div>
+            </div>
+            </div>
+ </div>
+ <br>
+ <hr>
+ <% } %>
+ <% }) %>
           </div> </div>
         </div>
       </div>
