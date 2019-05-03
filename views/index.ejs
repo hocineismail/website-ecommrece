@@ -108,8 +108,9 @@
                                       <img src="card.png" style="  width:  30px;border-radius: 100%;" />
                                         <span class="badge"style="margin-right: 20px;background-color: red;color: #fff">3</span>
                                       <div class="dropdown-content">
-                                      <a href="#">Link 1</a>
-                                      <a href="#">Link 2</a>
+                                        <% panier.forEach(function(list) { %>
+                                      <a href="#"><h4> <%= list.produit.Produit %> <span style="float: right"><%= list.produit.Prix %> DA </span></h4></a>
+                                      <% }) %>
                                       <a href="#">Afficher La liste</a>
                                       </div>
                                     </div>
