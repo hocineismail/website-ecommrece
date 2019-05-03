@@ -18,6 +18,22 @@ client.get("/Compte",(req,res)=> {
     res.render('Client/compteClient')
 })
 
+client.get("/submitperone/:_id",(req,res)=> {
+    Lists.findOne({user: req.user._id, _id: req.params._id}, (err, Update) => {
+        console.log(Update)
+ 
+        if (Update) {
+            Update.Paye = true;
+            Update.save();
+            req.flash("info", "Updating ");
+            res.redirect("/List/achats")
+        } else  { 
+        req.flash("error", "ce User existe");
+        res.redirect("/List/achats")}
+    })
+})
+
+
 client.post("/update/achat/:_id" ,(req, res) => {
   
     Lists.findOne({user: req.user._id, _id: req.params._id}, (err, Update) => {
