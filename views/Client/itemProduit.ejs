@@ -106,7 +106,38 @@
                          <img src="/uploads/<%= list.produit.image.Imageone %>" width="100px" />
                          </div>
                          <div class="col-md-10">
-                           <h5><%= list.produit.Produit%></h5>
+                            <div style="float:right">
+                          
+                               <button onclick="document.getElementById('<%= list._id%>').style.display='block'" class="btn btn-worng">Modier</button>
+
+                               <div id="<%= list._id%>" class="w3-modal">
+                                 <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+                             
+                                   <div class="w3-center"><br>
+                                     <span onclick="document.getElementById('<%= list._id%>').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+                                   
+                                   </div>
+                             
+                                  <div  style="padding: 50px" >
+                                    <form action="/update/achat" method="post"> 
+                                      <img src="/uploads/<%= list.produit.image.Imageone %>" style="float: right" width="100px"/>
+                                      <h5><%= list.produit.Produit%></h5> 
+                                     
+                                      <p> Description: <%= list.produit.Description%></p>
+                                      <p> Quantite: <input type="number" value="<%= list.produit.Quantite %>" name="Quantite"/></p>
+                                      <p>PRIX: <%= list.produit.Prix %> DA / 1 </p>
+                                      <hr>
+                                      <div  style="align-content: right">
+                                      <button class="btn btn-primary form-control">Modier</button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  
+                             
+                                 </div>
+                               </div><button class="btn btn-danger">Supprimer</button>
+                              </div>
+                           <h5><%= list.produit.Produit%></h5> 
                            <p> Description: <%= list.produit.Description%></p>
                            <p> Quantite: <%= list.produit.Quantite %></p>
                            <p>PRIX: <%= list.produit.Prix %> DA </p>
@@ -136,6 +167,7 @@
                </div>
                <div class="col-md-10">
                  <h5><%= list.produit.Produit%></h5>
+                
                  <p> Description: <%= list.produit.Description%></p>
                  <p> Quantite: <%= list.produit.Quantite %></p>
                  <p>PRIX: <%= list.produit.Prix %> DA </p>
