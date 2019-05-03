@@ -8,7 +8,7 @@
             <link href="css/icon.css" rel="stylesheet"  />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-
+            <link href="css/font.css" rel="stylesheet">
             <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
     <style>
@@ -82,15 +82,18 @@
           
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container"> 
-                            <a class="navbar-brand" href="#">Shopping</a>
+                            <a class="navbar-brand" href="#" style="font-family: 'Dancing Script', cursive;font-size: 30px">Shopping</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarText">
                               <ul class="navbar-nav mr-auto">
+                                  <%if (currentUser) { %>
+                                <% if (currentUser.user === 'Client') { %>
                                 <li class="nav-item active">
-                                  <a class="nav-link" href="#">Nos produit <span class="sr-only">(current)</span></a>
+                                  <a class="nav-link" href="/Compte">Mon Compte <span class="sr-only">(current)</span></a>
                                 </li>
+                                <% } %>   <% } %>
                                 <li class="nav-item">
                                   <a class="nav-link" href="#">Contact nous</a>
                                 </li>
@@ -126,6 +129,7 @@
           
           <div class="w3-container">
                 <div class="container">
+                  <p style="font-family: 'Dancing Script', cursive;font-size: 80px;text-align: center">Shopping</p>
                         <div class="row">
                             <% produit.forEach(function(produit)  {  %>
                             <div class="col-md-4" style="padding-top: 100px" > 
