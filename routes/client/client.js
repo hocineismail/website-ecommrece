@@ -23,7 +23,6 @@ client.get("/submitperone/:_id",(req,res)=> {
         console.log(Update)
         Produit.findOne({_id: Update.produit}, (err, produit) => {
             if (produit) {
-                console.log(produit)
                 if (produit.Quantite >= Update.Quantite) {
                     let NewQuantete = produit.Quantite - Update.Quantite;
                     produit.Quantite = NewQuantete;
