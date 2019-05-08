@@ -35,13 +35,29 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
        
         })
         
-routesAdmin.get("/admin/Demande", (req, res) => {
-  Lists.find({}).populate({path: 'produit', populate: {path: 'image'} }).populate("user").exec((err , List) => {
-    console.log(List)
-    res.render("Admin/demande", {List: List})
-  })
+routesAdmin.get("/admin/Demande", async (req, res) => {
+const Liste = await  Lists.find({Paye: true}).populate({path: 'produit', populate: {path: 'image'} }).populate("user")
 
+let TheFinalLis = []
+let IsExist = false 
+for (let i = 0 ; i < Liste.length; i++ ) {
+  for (let j = 0 ; j < TheFinalLis.length; j++ ) {
+   if (Liste[i].user._id === TheFinalLis[j].user._id) {
+       IsExist = true;
+   }
+  }
+  if (IsExist === false) {
+    console.log(Liste[i])
+    TheFinalLis = TheFinalLis.push(...Liste[i])
+  }
+  IsExist = false
+}
+res.render("Admin/demande", {List: TheFinalLis})
 })
+
+
+
+
 routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
   User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
     if (err) { 
