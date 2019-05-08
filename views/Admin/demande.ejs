@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-            <link href="css/bootstrap.css" rel="stylesheet" />           
-             <link href="css/bootstrap-theme.css" rel="stylesheet" />
+            <link href="/css/bootstrap.css" rel="stylesheet" />           
+             <link href="/css/bootstrap-theme.css" rel="stylesheet" />
             <script src="js/bootstrap.min.js"></script>
-            <link href="css/css.css" rel="stylesheet" />
-            <link href="css/icon.css" rel="stylesheet"  />
+            <link href="/css/css.css" rel="stylesheet" />
+            <link href="/css/icon.css" rel="stylesheet"  />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 
@@ -39,14 +39,12 @@
 <body>
        
 
-      <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:20%;padding: 10px  ">
-            <h3 class="w3-bar-item">Option avancer</h3>
-            <a class="nav-link" href="/ajouterProduit">Ajouter un produit <span class="sr-only">(current)</span></a>
-            <a class="nav-link" href="#">Liste des admins </a>
-            <a class="nav-link" href="#">Liste des clients </a>
-            <a class="nav-link" href="#"><% if (currentUser) { %>
-              <a class="nav-link" href="/Logout"><i class="fas fa-sign-out-alt icon">yyyyy</i>  </a>  <% }  %> 
-</a>
+      <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;padding: 10px  ">
+        <h3 class="w3-bar-item">Option avancer</h3>
+        <a class="nav-link" href="/ajouterProduit">Ajouter un produit <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/UserAdmins">Liste des admins </a>
+        <a class="nav-link" href="/UserClients">Liste des clients </a>
+
           
           </div>
           
@@ -56,7 +54,7 @@
           
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
               <div class="container"> 
-                  <a class="navbar-brand" href="#">Dashboard</a>
+                  <a class="navbar-brand" href="/admin">Dashboard</a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -69,17 +67,15 @@
                         <a class="nav-link" href="#">Statistique </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="/admin/Demande">Deamnde (10) </a>
                       </li>
                     </ul>
-                    
-                      <a class="nav-link" href="/Logout"><i class="fas fa-sign-out-alt icon">sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf</i>  </a> 
                     <%if (currentUser) { %>
-                    <span class="navbar-text">
-
-                  <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
-                    </span>
-                    <% } %>
+                      <span class="navbar-text">
+  
+                    <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
+                      </span>
+                      <% } %>
                   </div>
           
                 </nav>
@@ -87,12 +83,10 @@
     
           
           <div class="w3-container">
-                <div class="container">
-                       
-                 
-                </div> </div>
-          
+              <h1 style="text-align: center">La liste de Demande</h1>
           </div>
-     
-</body>
-</html>
+
+      </div>
+      </div>
+      </body>
+      </html>

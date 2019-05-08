@@ -34,7 +34,9 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
        
         })
         
-
+routesAdmin.get("/admin/Demande", (req, res) => {
+  res.render("Admin/demande")
+})
 routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
   User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
     if (err) { 
@@ -147,10 +149,6 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
   
       
       routesAdmin.post('/AddProduit', (req, res) => {
-      
-        
-      
-        console.log("routes")
         upload(req, res, (err) => {
           if(err){
             res.render('Admin/admin');
