@@ -82,11 +82,60 @@
           
     
           
-          <div class="w3-container">
-              <h1 style="text-align: center">La liste de Demande</h1>
-          </div>
+                <div class="w3-container">
+                    <h1 style="text-align: center">Liste de Demandet</h1>
+                </div>
+                <div class="container">
+                  <% errors.forEach(function(error) { %>
+                    <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                    </div>
+                    <% }) %>
+                    <% infos.forEach(function(info) { %>
+                    <div class="alert alert-info" role="alert">
+                    <%= info %>
+                    </div>
+                    <% }) %>
+                </div>
+                <div class="container"> 
+                    <div class="card">
+             <div class="row">
 
-      </div>
-      </div>
-      </body>
-      </html>
+                    <table class="table table-light">
+                        <thead>
+                          <tr>
+                            <th scope="col">le nom</th>
+                            <th scope="col">le prenom</th>
+                            <th scope="col">email</th>
+                            <th scope="col">sexe</th>
+                            <th scope="col">adress</th>
+                         
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% List.forEach(function(client) { %>
+                          <tr>
+                           
+                           <td> <%= client.user.Firstname %> <br></td>
+                            <td><%= client.user.Lastname %></td>
+                            <td><%= client.user.email %></td>
+                            <td><%= client.user.Sexe %></td>
+                            <td><%= client.Address %></td>
+                            
+                           
+                         
+                          </tr>
+                         <% }) %>
+                        </tbody>
+                      </table>
+          
+
+             </div>
+                 <hr>
+
+                </div> </div>
+              </div>
+            </div>
+            </div>
+            </body>
+            </html>
