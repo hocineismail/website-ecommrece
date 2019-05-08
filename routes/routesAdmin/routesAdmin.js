@@ -9,6 +9,7 @@ const path = require("path");
 const Categorie = require('../../models/categorie')
 const Produit = require('../../models/produit')
 const Client = require('../../models/client')
+const Lists = require('../../models/lists')
 const ImageProduit = require('../../models/imageProduit')
 
 routesAdmin.use(function(req, res, next) {
@@ -35,7 +36,11 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
         })
         
 routesAdmin.get("/admin/Demande", (req, res) => {
-  res.render("Admin/demande")
+  Lists.find({}).populate({path: 'produit', populate: {path: 'image'} }).populate("user").exec((err , List) => {
+    console.log(List)
+    res.render("Admin/demande", {List: List})
+  })
+
 })
 routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
   User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
