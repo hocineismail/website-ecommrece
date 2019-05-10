@@ -30,9 +30,6 @@ auth.get('/register', (req,res )=> {
 auth.post("/signup", function(req, res) {
 	
 	var email = req.body.username;
-	
-
-
 	User.findOne({ email: email }, function(err, user) {
 	if (err) { return next(err); }
 	if (user) {
@@ -61,9 +58,8 @@ auth.post("/signup", function(req, res) {
 						if (success) {
 							console.log("cbn kolch nimral")
 							res.redirect("/routes")
-						 }
-					
-							}); 
+						 } 
+						}); 
 			}
 		})
 		
