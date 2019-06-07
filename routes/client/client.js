@@ -36,6 +36,10 @@ client.get("/submitperone/:_id",(req,res)=> {
                     } else  { 
                     req.flash("error", "ce User existe");
                     res.redirect("/List/achats")}
+                } else {
+                    console.log(' quantite bzzzf')
+                    req.flash("info", "cette quantite n existe pas");
+                    res.redirect("/List/achats")
                 }
             }
         })

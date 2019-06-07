@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const listSchema = Schema({
  Quantite: { type: Number, required: true },
  Paye: { type: Boolean, default: false},
+ Commander: { type: Boolean, default: false},
  createdAt: { type: Date, default: Date.now },
  produit: {
     type: Schema.Types.ObjectId,

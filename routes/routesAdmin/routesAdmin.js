@@ -37,7 +37,7 @@ routesAdmin.get('/ajouterProduit', (req,res )=> {
         
 routesAdmin.get("/admin/Demande", async (req, res) => {
 const Liste = await  Lists.find({Paye: true}).populate({path: 'produit', populate: {path: 'image'} }).populate("user")
-
+console.log(Liste)
 let TheFinalLis = []
 let IsExist = false 
 for (let i = 0 ; i < Liste.length; i++ ) {
@@ -48,7 +48,7 @@ for (let i = 0 ; i < Liste.length; i++ ) {
   }
   if (IsExist === false) {
     console.log(Liste[i])
-    TheFinalLis = TheFinalLis.push(...Liste[i])
+  TheFinalLis.push(...Liste[i])
   }
   IsExist = false
 }
