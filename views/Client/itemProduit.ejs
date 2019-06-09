@@ -107,7 +107,7 @@
                          </div>
                          <div class="col-md-10">
                             <div style="float:right">
-                                <button onclick="document.getElementById('submit<%= list._id%>').style.display='block'" class="btn btn-worng">Deamnder</button>
+                                <button onclick="document.getElementById('submit<%= list._id%>').style.display='block'" class="btn btn-worng">Demander</button>
 
                                 <div id="submit<%= list._id%>" class="w3-modal">
                                   <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
@@ -183,7 +183,7 @@
            <hr>
            <% } %>
            <% }) %>
-           <button class="btn btn-success  ml-auto" style="margin: 20px">Achter</button>
+           <button class="btn btn-success  ml-auto" style="margin: 20px">Demander tout les produit</button>
        </div>
            <hr>
 <h3 style="text-align: center"> Ancien liste</h3>
@@ -197,8 +197,9 @@
                <img src="/uploads/<%= list.produit.image.Imageone %>" width="100px" />
                </div>
                <div class="col-md-10">
-                 <h5><%= list.produit.Produit%></h5>
                 
+                
+                 <h5><%= list.produit.Produit%></h5> 
                  <p> Description: <%= list.produit.Description%></p>
                  <p> Quantite: <%= list.Quantite %></p>
                  <p>PRIX: <%= list.produit.Prix %> DA </p>

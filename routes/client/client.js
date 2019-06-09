@@ -65,6 +65,7 @@ client.post("/update/achat/:_id" ,(req, res) => {
 })
 client.get("/List/achats",(req,res)=> {
     Lists.find({user: req.user._id}).populate({path: 'produit', populate: {path: 'image'} }).exec((err, lists) => {
+       console.log(lists)
         if (lists) {
            res.render('Client/itemProduit', {List: lists})
        }

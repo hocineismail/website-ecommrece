@@ -71,9 +71,11 @@
      </div>
 
      <div class="input-container"  required>
+        <% if (currentUser) {  %>
       <label > <input type="radio" value="Admin" name="user">&nbsp;Admin  &nbsp; &nbsp;&nbsp; </label>
+      <% } else { %>
       <label> <input type="radio" value="Client"  name="user" >  Client&nbsp;&nbsp;  </label>
-      
+      <% } %>
     </div>
   
   
