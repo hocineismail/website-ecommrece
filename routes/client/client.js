@@ -149,6 +149,9 @@ client.post("/AddToList", ensureAuthenticated , async  (req, res) => {
             });AddTList.save((err, siccess) => {
                 if (!siccess) {
                     console.log("not saving")
+                } else {
+                    var data = 'true'
+                    res.send(data)
                 }
             })
         }

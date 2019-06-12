@@ -93,7 +93,7 @@ app.get("/produitDetail/:_id",(req,res) => {
 app.get("/routes" , ensureAuthenticated, (req,res)=>{
  console.log("routeess")
   console.log(req.user)
-  if (req.user === "Client") {
+  if (req.user.user === "Client") {
      res.redirect("/")
   } else {
     res.redirect("/admin")

@@ -94,32 +94,46 @@
                                   <a class="nav-link" href="/Compte">Mon Compte <span class="sr-only">(current)</span></a>
                                 </li>
                                 <% } %>   <% } %>
+                                <% if (currentUser) {  %>
+                                  <% if (currentUser.user === "Admin") {  %>
+                                    <li class="nav-item active">
+                                      <a class="nav-link" href="/admin">ADMIN <span class="sr-only">(current)</span></a>
+                                    </li>  
+                                    <% } else { %>
                              
+                                <% } %>
+                                <% } %>
                               </ul>
                               <%if (currentUser) { %>
                                 <span class="navbar-text">
-                                
-                                  <div class="dropdown">
-                                      <img src="card.png" style="  width:  30px;border-radius: 100%;" />
-                                      <% var count = 0 %>
-                                      <% panier.forEach(function(list) { %>
-                                       <% count = count + 1 %>
-                                        <% }) %>
-                                        <span class="badge"style="margin-right: 20px;background-color: red;color: #fff">
-                                         <% if (count < 3 ) {%>
-
-                                          <%=  count %>
-                                         <% } else  { %>
-                                          <%=  count + " +" %>
-                                          <% }%>
-                                        </span>
-                                      <div class="dropdown-content">
-                                        <% panier.forEach(function(list) { %>
-                                      <a href="#"><h4> <img src="/uploads/<%= list.produit.image.Imageone %>"  width="30px"/> <%= list.produit.Produit %> <span style="float: right"><%= list.produit.Prix %> DA </span></h4></a>
-                                      <% }) %>
-                                      <a href="/List/achats">Afficher La liste</a>
-                                      </div>
-                                    </div>
+                                  <% if (currentUser) {  %>
+                                    <% if (currentUser.user === "Admin") {  %>
+                                       
+                                      <% } else { %>
+                                        <div class="dropdown">
+                                          <img src="card.png" style="  width:  30px;border-radius: 100%;" />
+                                          <% var count = 0 %>
+                                          <% panier.forEach(function(list) { %>
+                                           <% count = count + 1 %>
+                                            <% }) %>
+                                            <span class="badge"style="margin-right: 20px;background-color: red;color: #fff">
+                                             <% if (count < 3 ) {%>
+    
+                                              <%=  count %>
+                                             <% } else  { %>
+                                              <%=  count + " +" %>
+                                              <% }%>
+                                            </span>
+                                          <div class="dropdown-content">
+                                            <% panier.forEach(function(list) { %>
+                                          <a href="#"><h4> <img src="/uploads/<%= list.produit.image.Imageone %>"  width="30px"/> <%= list.produit.Produit %> <span style="float: right"><%= list.produit.Prix %> DA </span></h4></a>
+                                          <% }) %>
+                                          <a href="/List/achats">Afficher La liste</a>
+                                          </div>
+                                        </div>
+                                  <% } %>
+                                  <% } %>
+                                 
                               <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
                                 </span>
                                 <% } else {  %>
@@ -145,6 +159,8 @@
                   <p style="font-family: 'Dancing Script', cursive;font-size: 80px;text-align: center">Shopping</p>
                         <div class="row">
                             <% produit.forEach(function(produit)  {  %>
+                              <%if (produit.Quantite > 0) {%>
+                             
                             <div class="col-md-4" style="padding-top: 100px" > 
                                 <div class="card" style="width: 15rem;">
                                         <h5 class="card-title" style="text-align: center"><%= produit.Produit%></h5>
@@ -157,7 +173,7 @@
                                       </div>
                                     </div>
             
-                                
+                                    <%  }%>
                                 <% })%>    
             
                         </div>

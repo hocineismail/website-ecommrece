@@ -110,6 +110,9 @@ body {
               
 
              <% if (currentUser) {  %>
+              <% if (currentUser.user === "Admin") {  %>
+                <% } else { %>
+                  <%if (produit.Quantite > 0) {%>
               <form >
                  
                   <tr>
@@ -125,8 +128,19 @@ body {
                      
                       
                     </div>
+                    <div class="alert alert-warning" role="alert">
+              
+                      <p id="success">  </p>
+                       </div>
                 <botton class="btn btn-success" id="Ajouter">+ ajouter au panier</botton>
               </form>
+              <% }  else  {%>
+                <div class="alert alert-danger" role="alert">
+              
+                  <p style=" font-size: 12px">   Ce produit est fini  </p>
+                   </div>
+                <%   }%>
+              <% } %>
              
              <% }  else  {%>
               <div class="alert alert-warning" role="alert">
@@ -156,16 +170,27 @@ body {
                                 <li class="nav-item active">
                                   <a class="nav-link" href="#">Nos produit <span class="sr-only">(current)</span></a>
                                 </li>
-                           
+                                <% if (currentUser) {  %>
+                                  <% if (currentUser.user === "Admin") {  %>
+                                    <li class="nav-item active">
+                                      <a class="nav-link" href="/admin">ADMIN <span class="sr-only">(current)</span></a>
+                                    </li>  
+                                    <% } else { %>
+                             
+                                <% } %>
+                                <% } %>     
                               </ul>
                               <span class="navbar-text"> 
                               <% if (currentUser) {  %>
-
-                                <a href="#" class="notification" style="padding-right: 20px">
-                                  <img src="/card.png" style="  width:  30px;border-radius: 100%;" />
-                                  <span class="badge"style="margin-right: 20px">0</span>
-                                </a>
-                          
+                                <% if (currentUser.user === "Admin") {  %>
+                                  <% } else { %>
+                                    <a href="#" class="notification" style="padding-right: 20px">
+                                      <img src="/card.png" style="  width:  30px;border-radius: 100%;" />
+                                      <span class="badge"style="margin-right: 20px">0</span>
+                                    </a>
+                              
+                                    <% } %>
+                                
                              
                                 <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
                               </span>
@@ -282,9 +307,8 @@ body {
                 console.log('process exam complete');
                 console.log(data.ProduitValue)
               },
-              success: function(res) {
-                
-                var resu = JSON.parse(res)
+              success: function() {
+               
        var html;
        
       
