@@ -9,7 +9,7 @@ const path = require("path");
 const Categorie = require('../../models/categorie')
 const Produit = require('../../models/produit')
 const Client = require('../../models/client')
-const Lists = require('../../models/lists')
+const Commande = require('../../models/commande')
 const ImageProduit = require('../../models/imageProduit')
 
 routesAdmin.use(function(req, res, next) {
@@ -19,85 +19,132 @@ routesAdmin.use(function(req, res, next) {
   next();
  })
 
-routesAdmin.get('/ajouterProduit', (req,res )=> {
+routesAdmin.get('/ajouterProduit',ensureAuthenticated, (req,res )=> {
+  if (req.user.user === "Admin") {
     Categorie.find({},(err,categories)=> {
-        res.render("Admin/ajouterProduit",{categories: categories})
-    })
+      res.render("Admin/ajouterProduit",{categories: categories})
+  })
+} else {
+res.redirect("/routes")
+}
+
+ 
    
     })
 
 
-    routesAdmin.get('/UserAdmins', (req,res )=> {
-        User.find({user: "Admin"},(err,user)=> {
-          console.log(user)
-            res.render("Admin/userAdmins",{user: user})
-        })
-       
+    routesAdmin.get('/UserAdmins',ensureAuthenticated, (req,res )=> {
+      
+    if (req.user.user === "Admin") {
+      
+  
+      User.find({user: "Admin"},(err,user)=> {
+        console.log(user)
+          res.render("Admin/userAdmins",{user: user})
+      })
+     
+  } else {
+  res.redirect("/routes")
+  }
+
+
         })
         
-routesAdmin.get("/admin/Demande", async (req, res) => {
-const Liste = await  Lists.find({Paye: true}).populate({path: 'produit', populate: {path: 'image'} }).populate("user")
-console.log(Liste)
-let TheFinalLis = []
-let IsExist = false 
-for (let i = 0 ; i < Liste.length; i++ ) {
-  for (let j = 0 ; j < TheFinalLis.length; j++ ) {
-   if (Liste[i].user._id === TheFinalLis[j].user._id) {
-       IsExist = true;
-   }
-  }
-  if (IsExist === false) {
-    console.log(Liste[i])
-  TheFinalLis.push(...Liste[i])
-  }
-  IsExist = false
+routesAdmin.get("/admin/Demande",ensureAuthenticated, async (req, res) => {
+
+  if (req.user.user === "Admin") {
+    Commande.find({}).exec((err, lists) => {
+      console.log(lists)
+     res.render("Admin/demande", {List: lists})
+    })
+   
+} else {
+res.redirect("/routes")
 }
-res.render("Admin/demande", {List: TheFinalLis})
+
+
+
+
+ 
 })
 
 
 
 
-routesAdmin.get("/DeleteAdmin/:_id",(req,res)=>{
-  User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
-    if (err) { 
-      req.flash("error", "il ya une erreur ");
-      return res.redirect("/UserAdmins")}
-     else {
-      req.flash("info", "Admin est suppremer");
-      return res.redirect("/UserAdmins")
-     }
-  })
+routesAdmin.get("/DeleteAdmin/:_id",ensureAuthenticated,(req,res)=>{
+
+  if (req.user.user === "Admin") {
+  
+    User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
+      if (err) { 
+        req.flash("error", "il ya une erreur ");
+        return res.redirect("/UserAdmins")}
+       else {
+        req.flash("info", "Admin est suppremer");
+        return res.redirect("/UserAdmins")
+       }
+    })
+} else {
+res.redirect("/routes")
+}
+
+
+
 })
 
-routesAdmin.get("/ClientActif/:_id",(req,res)=> {
-  Client.findOne({_id: req.params._id},(err,CLIENT)=> {
-    if (CLIENT) {
-      if (CLIENT.IsActif) {
-        CLIENT.IsActif = false
-        CLIENT.save()
+routesAdmin.get("/ClientActif/:_id",ensureAuthenticated, (req,res)=> {
+  
+  if (req.user.user === "Admin") {
+    Client.findOne({_id: req.params._id},(err,CLIENT)=> {
+      if (CLIENT) {
+        if (CLIENT.IsActif) {
+          CLIENT.IsActif = false
+          CLIENT.save()
+        } else {
+          CLIENT.IsActif = true
+          CLIENT.save()
+        }
+        req.flash("info", "change d etat ");
+        res.redirect("/UserClients")
       } else {
-        CLIENT.IsActif = true
-        CLIENT.save()
+        req.flash("error", "il ya une erreur ");
+        res.redirect("/UserClients")
       }
-      req.flash("info", "change d etat ");
-      res.redirect("/UserClients")
-    } else {
-      req.flash("error", "il ya une erreur ");
-      res.redirect("/UserClients")
-    }
-  })
+    })
+} else {
+res.redirect("/routes")
+}
+
+
+
+
 })
 
-routesAdmin.get('/UserClients', (req,res )=> {
+routesAdmin.get('/UserClients', ensureAuthenticated, (req,res )=> {
+
+
+
+if (req.user.user === "Admin") {
   User.find({user: "Client"}).populate('client').exec((err,client)=> {
     console.log(client)
       res.render("Admin/userClients",{client: client})
   })
+} else {
+res.redirect("/routes")
+}
+
+
+
+ 
  
   })
 
-  routesAdmin.get("/DeleteClient/:_id",(req,res)=>{
+  routesAdmin.get("/DeleteClient/:_id",ensureAuthenticated,(req,res)=>{
+
+    if (req.user.user === "Admin") {
+     
+  
+  
     User.findOneAndDelete({_id: req.params._id},(err,DELETED)=> {
       if (err) { 
         req.flash("error", "il ya une erreur ");
@@ -109,18 +156,31 @@ routesAdmin.get('/UserClients', (req,res )=> {
         return res.redirect("/UserClients")
        }
     })
+  } else {
+    res.redirect("/routes")
+    }
+    
+  
+
   })
   
 
 
-    routesAdmin.get('/admin', (req,res )=> {
+    routesAdmin.get('/admin', ensureAuthenticated, (req,res )=> {
+
+      if (req.user.user === "Admin") {
         Produit.find({}).populate('categorie').populate('image').exec((err,Produits)=> {
-            res.render("Admin/listProduit",{produits: Produits})
-        })
+          res.render("Admin/listProduit",{produits: Produits})
+      })
+      } else {
+        res.redirect("/routes")
+        }
+        
+       
        
         }) 
 
-  routesAdmin.get('/DeleteProduit/:_id',(req, res) => {
+  routesAdmin.get('/DeleteProduit/:_id',ensureAuthenticated,(req, res) => {
       Produit.findOneAndDelete({_id: req.params._id},(err,success)=> {
           if (success) {
               res.redirect("/listProduit")
@@ -169,7 +229,7 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
   }
   
       
-      routesAdmin.post('/AddProduit', (req, res) => {
+      routesAdmin.post('/AddProduit',ensureAuthenticated, (req, res) => {
         upload(req, res, (err) => {
           if(err){
             res.render('Admin/admin');
@@ -233,7 +293,10 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
         next();
         } else {
          
-        res.redirect("/");
+        res.redirect("/login");
         }
          }
+
+
+         
 module.exports = routesAdmin;

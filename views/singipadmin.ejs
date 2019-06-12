@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link href="css/bootstrap.css" rel="stylesheet" />           
+             <link href="css/bootstrap-theme.css" rel="stylesheet" />
+            <script src="js/bootstrap.min.js"></script>
+            <link href="css/css.css" rel="stylesheet" />
+            <link href="css/icon.css" rel="stylesheet"  />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+            <link rel="stylesheet" href="http://localhost:3000/css/icon.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+
+</head>
+<body style="margin-bottom: 100px"  >
+        <div class="mobile">
+                <div class="container" style="padding-top: 2%;width: 350px;">
+                <h2 style="text-align: center"> nouveau compte
+                  </h2><br><br>
+              
+                <% errors.forEach(function(error) { %>
+                <div class="alert alert-danger" role="alert">
+                <%= error %>
+                </div>
+                <% }) %>
+                <% infos.forEach(function(info) { %>
+                <div class="alert alert-info" role="alert">
+                <%= info %>
+                </div>
+                <% }) %>
+
+                
+                <div id="app"> 
+  <form action="/signup" method="post">
+ 
+
+  <div class="input-container">
+      <label>Le prenom:</label>
+        <input class="form-control"  type="text"  placeholder="Le prenom" name="Firstname" required>
+        <label>Le nom</label>
+        <input class="form-control" type="text" placeholder="le nom" name="Lastname" required> 
+
+    </div>
+  <div class="input-container">
+      <label>Email:</label>
+        <input class="form-control"  type="text" placeholder="Email" name="username" required>
+    
+     </div>
+     <div class="input-container">
+       <label>Date de naissance:</label>
+            <input class="form-control"  type="date" placeholder="Date de naissance" name="Birthday" required>
+        
+         </div>
+         <div class="input-container">
+            <label>Sexe:</label>
+                <select class="form-control"   name="Sexe" required>
+                  <option >Homme</option>
+                  <option >Femme</option>
+                
+                </select>
+              
+              </div>   
+
+             
+
+     <div class="input-container" >
+        <label>Numero de telephone:</label>
+          <input class="form-control"  type="text" placeholder="Numero de telephone" name="Phone">
+      
+     </div>
+
+     <div class="input-container"  required>
+        <% if (currentUser) {  %>
+      <label > <input type="radio" value="Admin" name="user">&nbsp;Admin  &nbsp; &nbsp;&nbsp; </label>
+    
+      <% } %>
+    </div>
+  
+  
+
+
+     <div class="input-container">
+        <label>Adress:</label>
+          <input class="form-control"  type="text" placeholder="Adress" name="Address">
+         
+     </div>               
+  <div class="input-container">
+      <label>Mot de passe:</label>
+        <input class="form-control" type="password" placeholder="Mot de passe" id="password" name="password" required>
+    </div>
+
+
+
+
+
+
+   <div class="input-container">
+      <label>Confirme le mot de passe:</label>
+        <input class="form-control"  type="password" placeholder="Confirme le mot de passe" id="confirm_password" required>  
+</div>
+
+    <button type="submit" class="btn btn-success">Creer votre compe</button>
+ 
+  
+
+</form>
+
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
+<script src="vue/vue.js"></script>
+
+<script type="text/javascript">
+  var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
+
+
+    
+      </div>
+
+</body>
+</html>

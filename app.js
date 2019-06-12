@@ -41,31 +41,10 @@ app.use(flash());
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(routesAdmin)
-app.use(auth)
-app.use(client)
 
-
-app.get("/produitDetail/:_id",(req,res) => {
-  Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
-    console.log("hellooojk")
-    console.log(req.user)
-   res.render("produitDetail",{produit: produits})
-  })
- })
-
-
-app.get("/routes" , (req,res)=>{
- console.log("routeess")
-  console.log(req.user)
-  if (req.user === "Client") {
-     res.redirect("/")
-  } else {
-    res.redirect("/admin")
-  }
-})
 
 app.use(flash())
+
 
 //using folder views
 app.use(express.static(__dirname + '/public'))
@@ -73,14 +52,22 @@ app.engine('ejs', require('ejs').renderFile)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
+
+app.use(routesAdmin)
+app.use(auth)
+app.use(client)
+
+
 app.post(
   '/login',
   passport.authenticate('login', {
-    successRedirect: '/',
+    successRedirect: '/routes',
     failureRedirect: '/login',
     failureFlash: true
   })
 )
+
+
 app.get("/", (req,res) => {
  Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
    if (req.user) {
@@ -92,6 +79,25 @@ app.get("/", (req,res) => {
   }
  
  })
+})
+
+app.get("/produitDetail/:_id",(req,res) => {
+  Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
+    console.log("hellooojk")
+    console.log(req.user)
+   res.render("produitDetail",{produit: produits})
+  })
+ })
+
+
+app.get("/routes" , ensureAuthenticated, (req,res)=>{
+ console.log("routeess")
+  console.log(req.user)
+  if (req.user === "Client") {
+     res.redirect("/")
+  } else {
+    res.redirect("/admin")
+  }
 })
 
 app.get("/404", (req,res) => {
@@ -107,7 +113,7 @@ function ensureAuthenticated(req, res, next) {
   next();
   } else {
  
-  res.redirect("/");
+  res.redirect("/login");
   }
  }
 app.listen(3000, () => {

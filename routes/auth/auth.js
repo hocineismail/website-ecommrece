@@ -57,7 +57,7 @@ auth.post("/signup", function(req, res) {
 						if (err) { console.log( " ERROR ")}
 						if (success) {
 							console.log("cbn kolch nimral")
-							res.redirect("/routes")
+							res.redirect("/login")
 						 } 
 						}); 
 			}

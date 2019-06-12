@@ -65,7 +65,7 @@
                       </li>
                 
                       <li class="nav-item">
-                        <a class="nav-link" href="/admin/Demande">Commande (10) </a>
+                        <a class="nav-link" href="/admin/Demande">Commandes (1) </a>
                       </li>
                     </ul>
                     <%if (currentUser) { %>
@@ -81,7 +81,7 @@
     
           
                 <div class="w3-container">
-                    <h1 style="text-align: center">Liste de Demandet</h1>
+                    <h1 style="text-align: center">Les Commandes </h1>
                 </div>
                 <div class="container">
                   <% errors.forEach(function(error) { %>
@@ -107,23 +107,35 @@
                             <th scope="col">email</th>
                             <th scope="col">sexe</th>
                             <th scope="col">adress</th>
-                         
+                            <th scope="col">plus de details</th>
+                            <th scope="col">Date</th>
                           </tr>
                         </thead>
                         <tbody>
-                            <% List.forEach(function(client) { %>
+                            <tr>
+                           
+                                <td> roumaissa <br></td>
+                                 <td>roumaissa></td>
+                                 <td>roumaissa@gmail.com</td>
+                                 <td>femme</td>
+                                 <td>batna/algerie</td>
+                                 <td class="btn btn-success">voir la commande</td>
+                                 <td> 11/06/2019 05:36</td>
+                              
+                               </tr>
+                            <!-- <% List.forEach(function(client) { %> -->
                           <tr>
                            
-                           <td> <%= client.user.Firstname %> <br></td>
-                            <td><%= client.user.Lastname %></td>
-                            <td><%= client.user.email %></td>
-                            <td><%= client.user.Sexe %></td>
-                            <td><%= client.Address %></td>
-                            
+                           <td> roumaissa <br></td>
+                            <td>roumaissa></td>
+                            <td>roumaissa@gmail.com</td>
+                            <td>femme</td>
+                            <td>batna/algerie</td>
+                            <td><%=   Date.now %></td>
                            
                          
                           </tr>
-                         <% }) %>
+                         <!-- <% }) %> -->
                         </tbody>
                       </table>
           

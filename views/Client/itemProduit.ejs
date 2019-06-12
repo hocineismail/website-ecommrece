@@ -41,7 +41,7 @@
 
       <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%;padding: 10px  ">
             <h3 class="w3-bar-item">liens Rapide</h3>
-            <a class="nav-link" href="/Compte/profile">Mon Compte<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/Compte">Mon Compte<span class="sr-only">(current)</span></a>
             <a class="nav-link" href="/List/achats">Ma liste D achat </a>
         
            
@@ -197,13 +197,18 @@
                <img src="/uploads/<%= list.produit.image.Imageone %>" width="100px" />
                </div>
                <div class="col-md-10">
-                
-                
+                <% if (list.Commander) { %>
+                <h5 style="float: right">Valider pas Admin </h5> 
+                 <% } else {   %>
+                  <h5 style="float: right; color: red"">en attente de validation </h5> 
+                  <% }   %>
                  <h5><%= list.produit.Produit%></h5> 
                  <p> Description: <%= list.produit.Description%></p>
                  <p> Quantite: <%= list.Quantite %></p>
                  <p>PRIX: <%= list.produit.Prix %> DA </p>
                  <hr>
+                
+               
                  <p style="text-align: right; color: green">TOTAL: <%= list.produit.Prix *  list.Quantite %> DA</p>
                </div>
               </div>
