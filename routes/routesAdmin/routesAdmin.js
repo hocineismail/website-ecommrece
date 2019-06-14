@@ -163,7 +163,33 @@ res.redirect("/routes")
   
 
   })
-  
+  routesAdmin.post('/modiferProduit/:_id', ensureAuthenticated, (req,res )=> {
+   Produit.findOne({_id: req.params._id},(err, produit) => {
+     if (produit) {
+       produit.produit = req.body.produitname;
+       produit.Prix = req.body.prix;
+       if (req.body.NewCategorie === "null") {
+        produit.categorie = req.body.categorie;
+        
+       } else {
+     
+                var nweCategorie = new Categorie({
+                    Categorie: req.body.NewCategorie
+                })
+                nweCategorie.save().then(
+                  produit.categorie = nweCategorie._id
+                )
+       }
+     
+       produit.Quantite =req.body.quantite;
+       produit.Description = req.body.description;
+     };produit.save((err, update) => {
+       if (update) {
+         console.log("the produit has been update")
+        res.redirect('/admin')       }
+     })
+   })
+  })
 
 
     routesAdmin.get('/admin', ensureAuthenticated, (req,res )=> {
@@ -180,10 +206,10 @@ res.redirect("/routes")
        
         }) 
 
-  routesAdmin.get('/DeleteProduit/:_id',ensureAuthenticated,(req, res) => {
+  routesAdmin.get('/DeleteProduit/5d03bd25c54ed308f77338cc',ensureAuthenticated,(req, res) => {
       Produit.findOneAndDelete({_id: req.params._id},(err,success)=> {
           if (success) {
-              res.redirect("/listProduit")
+              res.redirect("/admin")
           }
       })
   })      
@@ -278,11 +304,13 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
                 Quantite: req.body.quantite,
                 image: newImage._id,
                 Description: req.body.description
-               });NewProduit.save()
+               });NewProduit.save().then(
+                res.redirect('/admin')
+               )
               }
              
               
-              res.render('Admin/admin');
+            
       
             }
           }

@@ -68,14 +68,16 @@ app.post(
 )
 
 
-app.get("/", (req,res) => {
+app.get("/", async (req,res) => {
+   const categorie = await Categorie.find({})
  Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
    if (req.user) {
   Lists.find({user: req.user._id, Paye: false}).populate({path: 'produit', populate: {path: 'image'} }).limit(3).exec((err,panier) => {
     console.log(panier)
-    res.render("index",{produit: produits, panier: panier})
+  
+    res.render("index",{categorie: categorie ,produit: produits, panier: panier})
   })  } else {
-    res.render("index",{produit: produits})
+    res.render("index",{categorie: categorie ,produit: produits})
   }
  
  })

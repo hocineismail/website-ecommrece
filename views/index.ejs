@@ -46,14 +46,9 @@
                     <label for="exampleFormControlSelect1">Recherche par categorie</label>
                     <select class="form-control" id="exampleFormControlSelect1">
                       <option>-- Choisez la categorie--</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
-                      <option>produit</option>
+                      <% categorie.forEach(function(categorie) { %>
+                      <option value="<%= categorie._id %>"><%= categorie.Categorie %></option>
+                      <%}  ) %>
                     </select>
                   
                 
