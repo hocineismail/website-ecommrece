@@ -83,6 +83,27 @@ app.get("/", async (req,res) => {
  })
 })
 
+app.post("/search", async (req, res) =>   {
+ 
+  console.log(" ajax function")
+ 
+  let categorie  = req.body.Categorie
+   let max = req.body.Max
+  let min = req.body.Min
+  if 
+    (req.body.Categorie != 'null')  {
+      // Student.find({exams: {$elemMatch: { Grade: { $gt: 49, $lt: 120}, Exam: req.params._id}}  }).populate("user").exec()
+ let findproduit = await Produit.find(  
+{ Prix: { $gt: min, $lt: max}, categorie: categorie}).populate('image')
+  console.log(findproduit)
+   res.send(findproduit)
+  
+        
+  } else  {
+  res.send()
+  }
+})
+
 app.get("/produitDetail/:_id",(req,res) => {
   Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
     console.log("hellooojk")

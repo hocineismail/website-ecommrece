@@ -43,9 +43,9 @@
             <h3 class="w3-bar-item">Option avancer</h3>
             
             <div class="form-group" >
-                    <label for="exampleFormControlSelect1">Recherche par categorie</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>-- Choisez la categorie--</option>
+                    <label for="categorie">Recherche par categorie</label>
+                    <select class="form-control" id="categorie">
+                      <option value="null">-- Choisez la categorie--</option>
                       <% categorie.forEach(function(categorie) { %>
                       <option value="<%= categorie._id %>"><%= categorie.Categorie %></option>
                       <%}  ) %>
@@ -57,15 +57,15 @@
                   <div class="row">
                       
                         <div class="col">
-                          <input type="number" class="form-control" placeholder="100DA">
+                          <input type="number" id="min"class="form-control" value="0" placeholder="100DA">
                         </div>
                         <div class="col">
-                          <input type="number" class="form-control" placeholder="1000000DA">
+                          <input type="number"  id="max"class="form-control" value="100000000" placeholder="1000000DA">
                         </div>
                       </div>
                       <hr>
                  
-                      <button type="submit" class="btn btn-primary">recherche</button>
+                      <button type="submit"  id="search" class="btn btn-primary">recherche</button>
                 
                       
                       
@@ -78,6 +78,9 @@
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container"> 
                             <a class="navbar-brand" href="#" style="font-family: 'Dancing Script', cursive;font-size: 30px">Shopping</a>
+
+
+                           
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"></span>
                             </button>
@@ -152,7 +155,11 @@
           <div class="w3-container">
                 <div class="container">
                   <p style="font-family: 'Dancing Script', cursive;font-size: 80px;text-align: center">Shopping</p>
+                  <div id="searchfind">
+                             
+                    </div>
                         <div class="row">
+                           
                             <% produit.forEach(function(produit)  {  %>
                               <%if (produit.Quantite > 0) {%>
                              
@@ -176,6 +183,77 @@
           </div>
           
           </div>
-     
+           
+      <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>  
+          <script>
+            $(function() {
+                $("#search").on("click", function () {
+                  var categorie = ( $("#categorie").val());
+                  var Min = $('#min').val();
+                  var Max = $('#max').val();
+                  $.ajax({
+                    type: 'post',
+                    url: '/search',
+                    dataType: "text",  
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                      Categorie: categorie,
+                      Max: Max,
+                      Min: Min
+                    }),
+                           
+                      cache: false,
+                        timeout: 5000,
+                        complete: function() {
+                         
+                          console.log('process exam complete');
+                          console.log(data)
+                        },
+                        success: function(res) {
+                        
+                          var resu = JSON.parse(res)
+                          console.log(resu)
+                 var html = '<h2 style="text-align: center">resultat'+ '(  ' + (resu.length )+ ' ) </h2>';
+                 
+              for (var i = 0; i< resu.length; i++) {
+          
+         
+                html += ' <div class="col-md-4" style="padding-top: 100px" > ';
+                html += '<div class="card" style="width: 15rem;">';
+                html += ' <div class="card" style="width: 15rem;">';
+                html += '<h5 class="card-title" style="text-align: center"> ' + resu[i].Produit  + '</h5>';
+                html += '<img class="card-img-top" src="uploads/'+ resu[i].image.Imageone  +'" alt="Card image cap">';
+                html += '<div class="card-body">';
+                html += '<h1 >'  + resu[i].Prix   +'DA</h1>';
+                html += '<p class="card-text">' + resu[i].Description + '</p>';
+              html += '<a href="/produitDetail/' + resu[i]._id  + '" class="btn btn-primary"> Details</a>';
+               html += '</div>';
+              html += '</div>';
+              html += '</div>';
+             }
+                
+                 
+           
+                                     
+    
+                 
+                 $('#searchfind').html(html);
+               },
+                        error: function() {
+                         
+                          console.log('process error');
+                        },
+                  
+                  });
+                });
+              });
+             
+        </script>
+                     
 </body>
+
 </html>

@@ -111,5 +111,18 @@
           
           </div>
      
+          html += ' <div class="col-md-4" style="padding-top: 100px" > ';
+              html += '<div class="card" style="width: 15rem;">';
+              html += ' <div class="card" style="width: 15rem;">'
+              html += 'h5 class="card-title" style="text-align: center"><%= produit.Produit%></h5>'
+              html += '<h5 class="card-title" style="text-align: center"><%= produit.Produit%></h5>'
+              html += '<img class="card-img-top" src="uploads/<%= produit.image.Imageone %>" alt="Card image cap">'
+              html += '<div class="card-body">'
+              html += '<h1 > <%= produit.Prix + " " %>DA</h1>'
+              html += '<p class="card-text"><%= produit.Description%></p>'
+              html += '<a href="/produitDetail/<%= produit._id %>" class="btn btn-primary"> Details</a>'
+              html += '</div>'
+              html += '</div>'
+              html += '</div>'
 </body>
 </html>
