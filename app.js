@@ -174,7 +174,7 @@ app.get("/NonActif", async (req,res) => {
     if (IsActif.client.IsActif === true) {
      res.redirect("/")
     } else {
-     res.render("/NonActif")
+     res.render("Client/NonActif")
     }
  } else {
    res.redirect("/admin")
