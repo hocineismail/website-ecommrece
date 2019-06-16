@@ -70,7 +70,32 @@ app.post(
 
 
 app.get("/", async (req,res) => {
+ if (req.user) {
 
+ if (req.user.user === "Client") {
+  const IsActif = await User.findOne({_id: req.user._id}).populate('client')
+  console.log(IsActif)
+  if (IsActif.client.IsActif === true) {
+    const categorie = await Categorie.find({})
+  Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
+    if (req.user) {
+   Lists.find({user: req.user._id, Paye: false}).populate({path: 'produit', populate: {path: 'image'} }).limit(3).exec((err,panier) => {
+     console.log(panier)
+   
+     res.render("index",{categorie: categorie ,produit: produits, panier: panier})
+   })  } else {
+     res.render("index",{categorie: categorie ,produit: produits})
+   }
+
+  })
+  } else {
+   res.redirect("/NonActif")
+  }
+ }
+
+
+
+ } else {
   const categorie = await Categorie.find({})
   Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
     if (req.user) {
@@ -81,9 +106,9 @@ app.get("/", async (req,res) => {
    })  } else {
      res.render("index",{categorie: categorie ,produit: produits})
    }
-  
+
   })
- 
+}
 })
 
 app.post("/search", async (req, res) =>   {
