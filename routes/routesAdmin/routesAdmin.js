@@ -58,7 +58,10 @@ routesAdmin.get("/admin/Demande",ensureAuthenticated, async (req, res) => {
         console.log(lists[i])
         for (let i = 0; i < lists[i].length; i++) {
           console.log(lists[i])
-  
+          for (let i = 0; i < lists[i].length; i++) {
+            console.log(lists[i])
+    
+          }
         }
       }
      res.render("Admin/demande", {List: lists})
@@ -182,7 +185,7 @@ res.redirect("/routes")
   routesAdmin.post('/modiferProduit/:_id', ensureAuthenticated, (req,res )=> {
    Produit.findOne({_id: req.params._id},(err, produit) => {
      if (produit) {
-       produit.produit = req.body.produitname;
+       produit.Produit = req.body.produitname;
        produit.Prix = req.body.prix;
        if (req.body.NewCategorie === "null") {
         produit.categorie = req.body.categorie;
