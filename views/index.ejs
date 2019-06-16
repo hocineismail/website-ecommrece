@@ -155,9 +155,10 @@
           <div class="w3-container">
                 <div class="container">
                   <p style="font-family: 'Dancing Script', cursive;font-size: 80px;text-align: center">Shopping</p>
-                  <div id="searchfind">
+                                             <div class="container">
+                  <div id="searchfind" class="row">
                              
-                    </div>
+                    </div> </div>
                     <h1 style="text-align: center">Nos produit </h1>
                         <div class="row">
                         
@@ -219,7 +220,7 @@
                           var resu = JSON.parse(res)
                           console.log(resu)
                  var html = '<h2 style="text-align: center">resultat'+ '(  ' + (resu.length )+ ' ) </h2>';
-                 html += '<div class="row">'
+                 
               for (var i = 0; i< resu.length; i++) {
           
          
@@ -236,7 +237,7 @@
               html += '</div>';
               html += '</div>';
              }
-             html += '</div>';
+             
                  
            
                                      
