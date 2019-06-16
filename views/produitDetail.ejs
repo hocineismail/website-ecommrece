@@ -79,7 +79,9 @@ body {
   border-radius: 2px;
 }
 
-
+#pqn:hover {
+  background-color: green
+}
 
 .notification .badge {
   position: absolute;
@@ -128,10 +130,10 @@ body {
                      
                       
                     </div>
-                    <div class="alert alert-warning" role="alert">
+                  
               
-                      <p id="success">  </p>
-                       </div>
+                      <div id="Suc">  </div>
+                     
                 <botton class="btn btn-success" id="Ajouter">+ ajouter au panier</botton>
               </form>
               <% }  else  {%>
@@ -168,7 +170,7 @@ body {
                             <div class="collapse navbar-collapse" id="navbarText">
                               <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                  <a class="nav-link" href="#">Nos produit <span class="sr-only">(current)</span></a>
+                                  <a class="nav-link" href="/">Nos produit <span class="sr-only">(current)</span></a>
                                 </li>
                                 <% if (currentUser) {  %>
                                   <% if (currentUser.user === "Admin") {  %>
@@ -176,20 +178,42 @@ body {
                                       <a class="nav-link" href="/admin">ADMIN <span class="sr-only">(current)</span></a>
                                     </li>  
                                     <% } else { %>
-                             
+                                      <li class="nav-item active">
+                                        <a class="nav-link" href="/Compte">mon compte <span class="sr-only">(current)</span></a>
+                                      </li> 
                                 <% } %>
                                 <% } %>     
                               </ul>
-                              <span class="navbar-text"> 
-                              <% if (currentUser) {  %>
-                                <% if (currentUser.user === "Admin") {  %>
-                                  <% } else { %>
-                                    <a href="#" class="notification" style="padding-right: 20px">
-                                      <img src="/card.png" style="  width:  30px;border-radius: 100%;" />
-                                      <span class="badge"style="margin-right: 20px">0</span>
-                                    </a>
-                              
-                                    <% } %>
+                              <%if (currentUser) { %>
+                                <span class="navbar-text">
+                                  <% if (currentUser) {  %>
+                                    <% if (currentUser.user === "Admin") {  %>
+                                       
+                                      <% } else { %>
+                                        <div class="dropdown">
+                                          <img src="/card.png" style="  width:  30px;border-radius: 100%;" />
+                                          <% var count = 0 %>
+                                          <% panier.forEach(function(list) { %>
+                                           <% count = count + 1 %>
+                                            <% }) %>
+                                            <span class="badge"style="margin-right: 20px;background-color: red;color: #fff">
+                                             <% if (count < 3 ) {%>
+    
+                                              <%=  count %>
+                                             <% } else  { %>
+                                              <%=  count + " +" %>
+                                              <% }%>
+                                            </span>
+                                          <div class="dropdown-content">
+                                            <% panier.forEach(function(list) { %>
+                                          <a href="#"><h4> <img src="/uploads/<%= list.produit.image.Imageone %>"  width="30px"/> <%= list.produit.Produit %> <span style="float: right"><%= list.produit.Prix %> DA </span></h4></a>
+                                          <% }) %>
+                                             <div id="Suc2"></div>
+                                          <a href="/List/achats">Afficher La liste</a>
+                                          </div>
+                                        </div>
+                                  <% } %>
+                                  <% } %>
                                 
                              
                                 <button type="button" class="btn btn-outline-danger"  onclick="window.location.href='/logout'">Se Deconnecter</button>
@@ -307,17 +331,18 @@ body {
                 console.log('process exam complete');
                 console.log(data.ProduitValue)
               },
-              success: function() {
-               
+              success: function(res) {
+               console.log(res)
        var html;
-       
+       var html2;
       
        html = '<div class="alert alert-success" role="alert">c est ajouter au panier!</div>'
-        
+       html2 = '<div class="alert alert-success" role="alert"><a href="#" id="pan"><h4> <img src="/uploads/<%= produit.image.Imageone %>"  width="30px"/> <%= produit.Produit %> <span style="float: right"><%= produit.Prix %> DA </span></h4></a></div>'
        
     
        
-       $('#Success').html(html);
+       $('#Suc').html(html);
+       $('#Suc2').html(html2);
      },
               error: function() {
                

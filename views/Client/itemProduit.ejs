@@ -60,8 +60,11 @@
                   </button>
                   <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
+                       <li class="nav-item active">
+                        <a class="nav-link" href="/">nos produits<span class="sr-only">(current)</span></a>
+                      </li>
                       <li class="nav-item active">
-                        <a class="nav-link" href="/Compte">My Compte <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/Compte">mon Compte <span class="sr-only">(current)</span></a>
                       </li>
                      
                     </ul>
@@ -166,7 +169,7 @@
                                   
                              
                                  </div>
-                               </div><button class="btn btn-danger">Supprimer</button>
+                               </div><a href="/removeproduir/<%= list._id%>" class="btn btn-danger">Supprimer</a>
                               </div>
                            <h5><%= list.produit.Produit%></h5> 
                            <p> Description: <%= list.produit.Description%></p>
@@ -183,7 +186,7 @@
            <hr>
            <% } %>
            <% }) %>
-           <button class="btn btn-success  ml-auto" style="margin: 20px">Demander tout les produit</button>
+           <a href="/allcommande" class="btn btn-success  ml-auto" style="margin: 20px">Demander tout les produit</a>
        </div>
            <hr>
 <h3 style="text-align: center"> Ancien liste</h3>
@@ -200,7 +203,7 @@
                 <% if (list.Commander) { %>
                 <h5 style="float: right">Valider pas Admin </h5> 
                  <% } else {   %>
-                  <h5 style="float: right; color: red"">en attente de validation </h5> 
+                  <h5 style="float: right; color: red""> </h5> 
                   <% }   %>
                  <h5><%= list.produit.Produit%></h5> 
                  <p> Description: <%= list.produit.Description%></p>

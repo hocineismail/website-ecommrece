@@ -1,16 +1,16 @@
-
-
-
 var mongoose = require("mongoose");
-
 var Schema = mongoose.Schema
 var commandeSchema = Schema({
- User: { type: Boolean, default: false },
+ userclient: {
+   type: Schema.Types.ObjectId,
+   ref: 'User' 
+},
+cammande: { type: Boolean, default: false},
  createdAt: { type: Date, default: Date.now },
- list: {
+ list: [ {
     type: Schema.Types.ObjectId,
     ref: 'Lists' 
- }
+ }]
 });
 
 var Commande = mongoose.model("Commande", commandeSchema);

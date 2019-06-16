@@ -24,7 +24,31 @@ client.get("/Compte",ensureAuthenticated,(req,res)=> {
 	}
    
 })
-
+client.get('/dc', (req, res ) => {
+    Commande.remove().then(
+        console.log(Commande.find())
+    )
+})
+client.get('/allcommande',async (req, res) => {
+       
+    if (req.user.user === "Client") {
+      const update = await  Lists.findOne({user: req.user._id, Paye: false})
+   
+      let newCommande = new Commande({
+        userclient: req.user._id,
+ });
+     newCommande.save((err, suc) => {
+         if (err) {
+            for (let i = 0; i < update.length ; i++ ) {
+                console.log(newCommande.list)
+                newCommande.list = newCommande.list.push(update[i]._id)
+            }
+         }; newCommande.save()
+     })
+	} else {
+		res.redirect("/routes")
+	}
+})
 client.get("/submitperone/:_id",ensureAuthenticated,(req,res)=> {
        
     if (req.user.user === "Client") {
@@ -42,18 +66,22 @@ client.get("/submitperone/:_id",ensureAuthenticated,(req,res)=> {
                             Update.save((err , success) => {
                                 if (!err) {
                                     Lists.find({user: req.user._id}).exec((err, listofuser) => {
+                                        console.log(listofuser)
                                         let newCommande = new Commande({
-                                            User: req.user._id,
-                                            list: listofuser,
+                                            userclient: req.user._id,
+                                            list: req.params._id,
             
-                                         })
-                                         newCommande.save()
+                                         });
+                                         newCommande.save().then(
+                                       
+                                          res.redirect("/List/achats")
+                                         )
+                                         console.log('2222')
                                     })
     
                                 }
                             });
-                            req.flash("info", "Updating ");
-                            res.redirect("/List/achats")
+                           
                         } else  { 
                         req.flash("error", "ce User existe");
                         res.redirect("/List/achats")}
@@ -125,6 +153,15 @@ client.get("/D", (req,res) => {
     res.redirect("/")
     
 })
+
+client.get("/removeproduir/:id", (req, res) => {
+    Lists.remove({_id:req.params.id}, (err, deletee) => {
+        if (deletee) {
+           console.log('suprimi')
+           res.redirect("/List/achats")
+        }
+    })
+})
 client.post("/AddToList", ensureAuthenticated , async  (req, res) => {
 
     if (req.user.user === "Client") {
@@ -135,14 +172,25 @@ client.post("/AddToList", ensureAuthenticated , async  (req, res) => {
         if (produit) {
             Lists.findOne({Paye: false, produit: req.body._id, user: req.user._id}, (err, Exist) => {
                 console.log(Exist)
-                const Quantite =  parseInt(Exist.Quantite);
+                let Quantite =  parseInt(Exist.Quantite);
                 Exist.Quantite =  Quantite + parseInt(req.body.Quantite);
-                Exist.save();
+                Exist.save((err, siccess) => {
+                    if (!siccess) {
+                        console.log("not saving")
+                    } else {
+                        var data = 'true'
+                    console.log('12313121231123123123')
+                    let  produits =  produit.populate('produit')
+                    
+                    res.send(produits)
+                    }
+                   
+                })
                 console.log(Exist)
                 return
             })     
         } else  {
-            const AddTList = new Lists({
+            let AddTList = new Lists({
                 Quantite: req.body.Quantite,      
                 produit: req.body._id,
                 user: req.user._id   
@@ -150,9 +198,13 @@ client.post("/AddToList", ensureAuthenticated , async  (req, res) => {
                 if (!siccess) {
                     console.log("not saving")
                 } else {
-                    var data = 'true'
-                    res.send(data)
+                    
+                console.log('12313121231123123123')
+               let  data =  AddTList.populate('image')
+               console.log(data)
+                res.send(data)
                 }
+               
             })
         }
 	} else {

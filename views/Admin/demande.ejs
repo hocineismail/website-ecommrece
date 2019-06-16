@@ -65,7 +65,7 @@
                       </li>
                 
                       <li class="nav-item">
-                        <a class="nav-link" href="/admin/Demande">Commandes (1) </a>
+                        <a class="nav-link" href="/admin/Demande">Commandes </a>
                       </li>
                     </ul>
                     <%if (currentUser) { %>
@@ -107,35 +107,29 @@
                             <th scope="col">email</th>
                             <th scope="col">sexe</th>
                             <th scope="col">adress</th>
-                            <th scope="col">plus de details</th>
+                           
                             <th scope="col">Date</th>
+                            <th scope="col">option</th>
                           </tr>
                         </thead>
                         <tbody>
-                            <tr>
                            
-                                <td> roumaissa <br></td>
-                                 <td>roumaissa></td>
-                                 <td>roumaissa@gmail.com</td>
-                                 <td>femme</td>
-                                 <td>batna/algerie</td>
-                                 <td class="btn btn-success">voir la commande</td>
-                                 <td> 11/06/2019 05:36</td>
-                              
-                               </tr>
-                            <!-- <% List.forEach(function(client) { %> -->
+                             <% List.forEach(function(client) { %> 
+                              <% if (client.cammande === false) {%>
                           <tr>
                            
-                           <td> roumaissa <br></td>
-                            <td>roumaissa></td>
-                            <td>roumaissa@gmail.com</td>
-                            <td>femme</td>
-                            <td>batna/algerie</td>
-                            <td><%=   Date.now %></td>
-                           
+                           <td> <%=  client.cammande%> <br></td>
+                            <td><%=  client.userclient.Lastname %></td>
+                            <td><%= client.userclient.email %></td>
+                            <td><%= client.userclient.Sexe%></td>
+                            <td><%= client.userclient.Address%></td>
+                            
+                            <% var date = client.createdAt %>
+                            <td ><%=    date.toDateString() %> // <%=    date.toLocaleTimeString() %></td>
+                            <td ><a href="/commande/<%= client._id%>" class="btn btn-success">Envoyer la Commande</a><a href="#" class="btn btn-default">voir la commande</a> </td>
                          
                           </tr>
-                         <!-- <% }) %> -->
+                          <% } %>  <% }) %> 
                         </tbody>
                       </table>
           
@@ -143,7 +137,51 @@
              </div>
                  <hr>
 
-                </div> </div>
+                </div> 
+              <h1>Liste Envoyer</h1>
+              <div class="card">
+                <div class="row">
+   
+                       <table class="table table-light">
+                           <thead>
+                             <tr>
+                               <th scope="col">le nom</th>
+                               <th scope="col">le prenom</th>
+                               <th scope="col">email</th>
+                               <th scope="col">sexe</th>
+                               <th scope="col">adress</th>
+                               <th scope="col">plus de details</th>
+                               <th scope="col">Date</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                              
+                                <% List.forEach(function(client) { %> 
+                                  <% if (client.cammande === true) {%>
+                             <tr>
+                          
+                             
+                              <td> <%=  client.userclient.Firstname%> <br></td>
+                               <td><%=  client.userclient.Lastname %></td>
+                               <td><%= client.userclient.email %></td>
+                               <td><%= client.userclient.Sexe%></td>
+                               <td><%= client.userclient.Address%></td>
+                               
+                               <% var date = client.createdAt %>
+                               <td ><%=    date.toDateString() %> // <%=    date.toLocaleTimeString() %></td>
+                               <td ><a href="#" class="btn btn-success">voir la commande</a> </td>
+                            
+                             </tr>
+                             <% } %>
+                            <% }) %> 
+                           </tbody>
+                         </table>
+             
+   
+                </div>
+                    <hr>
+   
+                   </div> </div>
               </div>
             </div>
             </div>

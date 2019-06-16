@@ -53,7 +53,7 @@ res.redirect("/routes")
 routesAdmin.get("/admin/Demande",ensureAuthenticated, async (req, res) => {
 
   if (req.user.user === "Admin") {
-    Commande.find({}).exec((err, lists) => {
+    Commande.find({}).populate('userclient').exec((err, lists) => {
       console.log(lists)
      res.render("Admin/demande", {List: lists})
     })
@@ -68,7 +68,17 @@ res.redirect("/routes")
  
 })
 
+routesAdmin.get("/commande/:id", (req, res) => {
+  Commande.findOne({_id: req.params.id}, (err, ress) => {
+    if (!err) {
+        ress.cammande = true
+        ress.save().then(
+          res.redirect('/admin/Demande')
+        )
 
+    }
+  })
+})
 
 
 routesAdmin.get("/DeleteAdmin/:_id",ensureAuthenticated,(req,res)=>{
@@ -206,7 +216,7 @@ res.redirect("/routes")
        
         }) 
 
-  routesAdmin.get('/DeleteProduit/5d03bd25c54ed308f77338cc',ensureAuthenticated,(req, res) => {
+  routesAdmin.get('/DeleteProduit/_id',ensureAuthenticated,(req, res) => {
       Produit.findOneAndDelete({_id: req.params._id},(err,success)=> {
           if (success) {
               res.redirect("/admin")
@@ -287,7 +297,9 @@ const upload = multer({storage: storage, limits: { fileSize: 50000000 },
                     Quantite: req.body.quantite,
                     image: newImage._id,
                     Description: req.body.description
-                   });NewProduit.save()
+                   });NewProduit.save().then(
+                    res.redirect('/admin')
+                   )
               } else { 
                 var newImage = new ImageProduit({
                     Imageone: req.files.image1[0].filename,

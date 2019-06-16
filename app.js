@@ -105,11 +105,22 @@ app.post("/search", async (req, res) =>   {
 })
 
 app.get("/produitDetail/:_id",(req,res) => {
-  Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
-    console.log("hellooojk")
-    console.log(req.user)
-   res.render("produitDetail",{produit: produits})
-  })
+  if (req.user) {
+    Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
+      Lists.find({user: req.user._id, Paye: false}).populate({path: 'produit', populate: {path: 'image'} }).limit(3).exec((err,panier) => {
+        console.log(panier)
+      
+        res.render("produitDetail",{produit: produits, panier: panier})
+      })
+    })
+  } else {
+    Produit.findOne({_id: req.params._id}).populate("categorie").populate("image").exec((err,produits)=>{
+      console.log("hellooojk")
+      console.log(req.user)
+     res.render("produitDetail",{produit: produits})
+    })
+  }
+  
  })
 
 
