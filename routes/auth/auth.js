@@ -19,13 +19,26 @@ auth.use(function(req, res, next) {
 auth.get('/login', (req,res )=> {
 res.render("login")
 })
-
+auth.post('/updateclient/:id', (req, res) => {
+     User.findOne({_id: req.params.id},(err, success) => {
+		 if (success) {
+			 success.Firstname = req.body.Firstname
+			 success.Lastname = req.body.Lastname
+			 success.Sexe = req.body.Sexe
+			 success.Address = req.body.Address
+			 success.save((err, ok) => {
+				 if (ok) {
+					 res.redirect('/UserClients')
+				 }
+			 })
+		 }
+	 })
+})
 
 auth.get('/register', (req,res )=> {
     res.render("signup")
-    })
-    
-    
+})
+   
 //his req for signup
 auth.post("/signup", function(req, res) {
 	

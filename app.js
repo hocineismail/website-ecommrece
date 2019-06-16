@@ -14,6 +14,7 @@ const Categorie = require("./models/categorie")
 const auth = require('./routes/auth/auth')
 const client = require('./routes/client/client')
 const Lists = require("./models/lists");
+const User = require("./models/user");
 mongoose.connect("mongodb://localhost:27017/projet-Unic");
 var setUpPassport = require('./routes/setuppassport')
 
@@ -69,18 +70,20 @@ app.post(
 
 
 app.get("/", async (req,res) => {
-   const categorie = await Categorie.find({})
- Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
-   if (req.user) {
-  Lists.find({user: req.user._id, Paye: false}).populate({path: 'produit', populate: {path: 'image'} }).limit(3).exec((err,panier) => {
-    console.log(panier)
+
+  const categorie = await Categorie.find({})
+  Produit.find({}).populate("categorie").populate("image").exec((err,produits)=>{
+    if (req.user) {
+   Lists.find({user: req.user._id, Paye: false}).populate({path: 'produit', populate: {path: 'image'} }).limit(3).exec((err,panier) => {
+     console.log(panier)
+   
+     res.render("index",{categorie: categorie ,produit: produits, panier: panier})
+   })  } else {
+     res.render("index",{categorie: categorie ,produit: produits})
+   }
   
-    res.render("index",{categorie: categorie ,produit: produits, panier: panier})
-  })  } else {
-    res.render("index",{categorie: categorie ,produit: produits})
-  }
+  })
  
- })
 })
 
 app.post("/search", async (req, res) =>   {
@@ -124,16 +127,24 @@ app.get("/produitDetail/:_id",(req,res) => {
  })
 
 
-app.get("/routes" , ensureAuthenticated, (req,res)=>{
+app.get("/routes" , ensureAuthenticated,async (req,res)=>{
  console.log("routeess")
   console.log(req.user)
   if (req.user.user === "Client") {
-     res.redirect("/")
+     const IsActif = await User.findOne({_id: req.user._id}).populate('client')
+     console.log(IsActif)
+     if (IsActif.client.IsActif === true) {
+      res.redirect("/")
+     } else {
+      res.redirect("/NonActif")
+     }
   } else {
     res.redirect("/admin")
   }
 })
-
+app.get("/NonActif", (req,res) => {
+  res.render('Client/nonactif')
+})
 app.get("/404", (req,res) => {
   res.render("404")
 })

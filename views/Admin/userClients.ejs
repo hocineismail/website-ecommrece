@@ -129,7 +129,7 @@
                     <div class="w3-container">
                       <span onclick="document.getElementById('<%= client._id %>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
                      <div style="padding: 100px"> 
-                        <form action="/signup" method="post">
+                        <form action="/updateclient/<%= client._id %>" method="post">
  
 
                             <div class="input-container">
@@ -139,11 +139,7 @@
                                   <input class="form-control" type="text" value="<%= client.Lastname %>" name="Lastname" required> 
                           
                               </div>
-                            <div class="input-container">
-                                <label>Email:</label>
-                                  <input class="form-control"  type="text" value="<%= client.email %>" name="username" required>
-                              
-                               </div>
+                        
                              
                                    <div class="input-container">
                                       <label>Sexe:</label>

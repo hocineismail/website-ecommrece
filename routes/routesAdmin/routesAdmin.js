@@ -53,8 +53,14 @@ res.redirect("/routes")
 routesAdmin.get("/admin/Demande",ensureAuthenticated, async (req, res) => {
 
   if (req.user.user === "Admin") {
-    Commande.find({}).populate('userclient').exec((err, lists) => {
-      console.log(lists)
+    Commande.find({}).populate('userclient').populate({path: 'list', populate: {path: 'produit'} }).exec((err, lists) => {
+      for (let i = 0; i < lists.length; i++) {
+        console.log(lists[i])
+        for (let i = 0; i < lists[i].length; i++) {
+          console.log(lists[i])
+  
+        }
+      }
      res.render("Admin/demande", {List: lists})
     })
    

@@ -118,7 +118,7 @@
                               <% if (client.cammande === false) {%>
                           <tr>
                            
-                           <td> <%=  client.cammande%> <br></td>
+                           <td> <%=  client.userclient.Firstname%> <br></td>
                             <td><%=  client.userclient.Lastname %></td>
                             <td><%= client.userclient.email %></td>
                             <td><%= client.userclient.Sexe%></td>
@@ -126,7 +126,7 @@
                             
                             <% var date = client.createdAt %>
                             <td ><%=    date.toDateString() %> // <%=    date.toLocaleTimeString() %></td>
-                            <td ><a href="/commande/<%= client._id%>" class="btn btn-success">Envoyer la Commande</a><a href="#" class="btn btn-default">voir la commande</a> </td>
+                            <td ><a href="/commande/<%= client._id%>" class="btn btn-success">Envoyer la Commande</a><a href="/produitDetail/<%= client.list.produit._id%>" class="btn btn-default">voir la commande</a> </td>
                          
                           </tr>
                           <% } %>  <% }) %> 
@@ -169,7 +169,7 @@
                                
                                <% var date = client.createdAt %>
                                <td ><%=    date.toDateString() %> // <%=    date.toLocaleTimeString() %></td>
-                               <td ><a href="#" class="btn btn-success">voir la commande</a> </td>
+                               <td ><a href="/produitDetail/<%= client.list.produit._id%>"  class="btn btn-default">voir la commande</a> </td>
                             
                              </tr>
                              <% } %>
