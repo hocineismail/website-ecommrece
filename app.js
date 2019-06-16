@@ -167,8 +167,19 @@ app.get("/routes" , ensureAuthenticated,async (req,res)=>{
     res.redirect("/admin")
   }
 })
-app.get("/NonActif", (req,res) => {
-  res.render('Client/nonactif')
+app.get("/NonActif", async (req,res) => {
+  if (req.user.user === "Client") {
+    const IsActif = await User.findOne({_id: req.user._id}).populate('client')
+    console.log(IsActif)
+    if (IsActif.client.IsActif === true) {
+     res.redirect("/")
+    } else {
+     res.render("/NonActif")
+    }
+ } else {
+   res.redirect("/admin")
+ }
+  
 })
 app.get("/404", (req,res) => {
   res.render("404")
