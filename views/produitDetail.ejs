@@ -149,7 +149,7 @@ body {
               
            <p style=" font-size: 12px">   Pour commender Ce Prduit vous devez se connecter ou sign up </p>
             </div>
-              <button type="button" class="btn btn-success" onclick="window.location.href='/register'">Register</button>
+              <button type="button" class="btn btn-success" onclick="window.location.href='/register'">S'enregistrer</button>
                 <button type="button" class="btn btn-outline-success"  onclick="window.location.href='/login'">Se Connecter</button>
                  <% } %>           
             </div>
@@ -225,7 +225,7 @@ body {
                                               <img src="/card.png" style="  width:  30px;border-radius: 100%;" />
                                          
                                             </a>
-                                    <button type="button" class="btn btn-success" onclick="window.location.href='/register'">Register</button>
+                                    <button type="button" class="btn btn-success" onclick="window.location.href='/register'">S'enregistrer</button>
                             <button type="button" class="btn btn-outline-success"  onclick="window.location.href='/login'">Se Connecter</button>
                           <% } %>   
                           </span>
@@ -337,7 +337,7 @@ body {
        var html2;
       
        html = '<div class="alert alert-success" role="alert">c est ajouter au panier!</div>'
-       html2 = '<div class="alert alert-success" role="alert"><a href="#" id="pan"><h4> <img src="/uploads/<%= produit.image.Imageone %>"  width="30px"/> <%= produit.Produit %> <span style="float: right"><%= produit.Prix %> DA </span></h4></a></div>'
+       html2 = '<div class="alert alert-success" role="alert"><a href="#" ><h4> <img src="/uploads/<%= produit.image.Imageone %>"  width="30px"/> <%= produit.Produit %> <span style="float: right"><%= produit.Prix %> DA </span></h4></a></div>'
        
     
        
